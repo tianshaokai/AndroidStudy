@@ -1,4 +1,14 @@
 include ':app'
 
 include ':common'
-project(':common').projectDir = new File(settingsDir, '../AndroidLibrary/common')
+
+include ':canvas'
+
+include ':widgetView'
+
+include ':uiapp'
+include ':widget'
+
+include ':BaiduDemo'
+
+include ':GaoDeDemo'

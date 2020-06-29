@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="135dp"
+    android:layout_height="135dp">
+
+    <!--录音中背景 大圆-->
+    <View
+        android:id="@+id/viewAnimBg"
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        android:background="@drawable/eng_bg_cricle_solid_ffe74d" />
+
+    <ImageView
+        android:id="@+id/ivSpeak"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@mipmap/eng_ic_speak" />
+</FrameLayout>

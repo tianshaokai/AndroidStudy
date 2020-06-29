@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <com.tianshaokai.canvasdemo.pagecurl.views.TwistView
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+<!--    <com.tianshaokai.canvasdemo.pagecurl.views.CurveView
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />-->
+
+<!--    <com.tianshaokai.canvasdemo.pagecurl.views.FoldView
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />-->
+<!--    <com.tianshaokai.canvasdemo.pagecurl.views.PageTurnView
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />-->
+</LinearLayout>

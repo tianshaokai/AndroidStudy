@@ -1,12 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
+    long time = System.currentTimeMillis() / 1000;
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.tianshaokai.study"
         minSdkVersion 17
         targetSdkVersion 28
-        versionCode 1
+        versionCode time.intValue()
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
