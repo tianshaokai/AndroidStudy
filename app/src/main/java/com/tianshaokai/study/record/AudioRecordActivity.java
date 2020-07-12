@@ -3,10 +3,11 @@ package com.tianshaokai.study.record;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -15,13 +16,17 @@ import com.tianshaokai.common.audio.AudioRecordManager;
 import com.tianshaokai.common.audio.AudioTrackManager;
 import com.tianshaokai.common.utils.DateUtil;
 import com.tianshaokai.common.utils.FileUtil;
+import com.tianshaokai.common.utils.SDUtils;
 import com.tianshaokai.study.R;
 
 import java.io.File;
+import java.io.FileFilter;
+import java.util.Arrays;
+import java.util.List;
 
 public class AudioRecordActivity extends AppCompatActivity {
     private static final String TAG = "AudioActivity";
-    private Button button1, button2, button3, button4;
+    private Button button1, button2, button3, button4, button5;
 
     private String[] permissions = new String[] {
             Manifest.permission.RECORD_AUDIO//音频
@@ -30,6 +35,8 @@ public class AudioRecordActivity extends AppCompatActivity {
     private String audioPath;
 
     private static final int REQUEST_PERMISSIONS = 1000;
+
+    private RecyclerView audioRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +47,13 @@ public class AudioRecordActivity extends AppCompatActivity {
         button2 = findViewById(R.id.button2);
         button3 = findViewById(R.id.button3);
         button4 = findViewById(R.id.button4);
+        button5 = findViewById(R.id.button5);
+
+        audioRecyclerView = findViewById(R.id.audioRecyclerView);
+
+        final AudioRecordListAdapter audioRecordListAdapter = new AudioRecordListAdapter(getAudioList());
+        audioRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        audioRecyclerView.setAdapter(audioRecordListAdapter);
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +73,7 @@ public class AudioRecordActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 stopRecord();
+                audioRecordListAdapter.addFile(audioPath);
             }
         });
         button3.setOnClickListener(new View.OnClickListener() {
@@ -74,15 +89,34 @@ public class AudioRecordActivity extends AppCompatActivity {
                 AudioTrackManager.getInstance().stop();
             }
         });
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String filePath = SDUtils.getPackageAudioPath(AudioRecordActivity.this);
+                FileUtil.deleteFile(new File(filePath));
+                audioRecordListAdapter.deleteFile();
+            }
+        });
     }
 
     private void startRecord() {
-        String filePath = FileUtil.getPackageAudioPath(this);
+        String filePath = SDUtils.getPackageAudioPath(this);
         audioPath = filePath + File.separator + DateUtil.getTimeStamp() + ".pcm";
         AudioRecordManager.getInstance().setRecordPath(audioPath).startRecord();
     }
 
     private void stopRecord() {
         AudioRecordManager.getInstance().stopRecord();
+    }
+
+    private List<File> getAudioList() {
+        String filePath = SDUtils.getPackageAudioPath(this);
+        File[] fileArray = new File(filePath).listFiles(new FileFilter() {
+            @Override
+            public boolean accept(File pathname) {
+                return pathname.isFile() && !pathname.isHidden() && pathname.getName().endsWith(".pcm");
+            }
+        });
+        return Arrays.asList(fileArray);
     }
 }

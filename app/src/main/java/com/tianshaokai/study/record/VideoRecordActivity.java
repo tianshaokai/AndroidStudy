@@ -34,7 +34,7 @@ public class VideoRecordActivity extends AppCompatActivity implements View.OnCli
     private LinearLayout cameracommunication, testbtn;
     private Button returnCameraBtn, failCameraBtn, passCameraBtn,
             btn_start_camera, btn_start_camera_one, btn_start_camera_two, btn_start_camera_three, btn_start_camera_four;
-    TextView tvRecordState;
+    TextView tvRecordState, tvRecordStart, tvRecordStop;
     private MediaPlayer mMediaPlayer;
 //    private VUMeter2 mVUMeter;
 

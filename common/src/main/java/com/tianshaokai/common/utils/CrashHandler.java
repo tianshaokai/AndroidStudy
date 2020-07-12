@@ -140,10 +140,10 @@ public class CrashHandler implements UncaughtExceptionHandler {
         sb.append(result);
         LogUtil.e(TAG + "\n" + result);
         try {
-            if (!FileUtil.isSdMounted()) {
+            if (!SDUtils.isSdMounted()) {
                 return;
             }
-            String path = FileUtil.getPackageCrashPath(mContext);
+            String path = SDUtils.getPackageCrashPath(mContext);
             File dir = new File(path);
             if (!dir.exists()) {
                 dir.mkdirs();

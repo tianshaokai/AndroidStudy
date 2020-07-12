@@ -7,6 +7,7 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -14,82 +15,8 @@ public class FileUtil {
 
     private static final String TAG = "FileUtil";
 
-    public static boolean isSdMounted() {
-        return Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
-    }
-
-    /**
-     * @return 获取外部相册路径
-     */
-    public static String getStorageDCIMPath() {
-        return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).getAbsolutePath();
-    }
-
-    /**
-     * @return 获取外部音频路径
-     */
-    public static String getStorageAudioPath() {
-        return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC).getAbsolutePath();
-    }
-
-    /**
-     * @return 获取外部视频路径
-     */
-    public static String getStorageVideoPath() {
-        return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES).getAbsolutePath();
-    }
-
-
-    public static String getExternalFilesDir(Context context, String dir) {
-        if (context == null) {
-            return "";
-        }
-        File filePath = context.getApplicationContext().getExternalFilesDir(dir);
-        if (filePath != null) {
-            return filePath.getAbsolutePath();
-        }
-        return "";
-    }
-
-    public static String getPackageDCIMPath(Context context) {
-        if (context == null) {
-            return "";
-        }
-        File filePath = context.getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DCIM);
-        if (filePath != null) {
-            return filePath.getAbsolutePath();
-        }
-        return "";
-    }
-
-    public static String getPackageAudioPath(Context context) {
-        if (context == null) {
-            return "";
-        }
-        File filePath = context.getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_MUSIC);
-        if (filePath != null) {
-            return filePath.getAbsolutePath();
-        }
-        return "";
-    }
-
-    public static String getPackageMoviePath(Context context) {
-        if (context == null) {
-            return "";
-        }
-        File filePath = context.getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_MOVIES);
-        if (filePath != null) {
-            return filePath.getAbsolutePath();
-        }
-        return "";
-    }
-
-    public static String getPackageCrashPath(Context context) {
-        return getExternalFilesDir(context, "Crash");
-    }
-
     public static String saveBitmapToDCIM(Context context, Bitmap bitmap) {
-        String path = getPackageDCIMPath(context);
+        String path = SDUtils.getPackageDCIMPath(context);
         String filePath = path + File.separator + "IMG_" + DateUtil.getTimeStamp() + ".png";
         File file = new File(filePath);
         FileOutputStream out = null;
@@ -187,5 +114,20 @@ public class FileUtil {
             }
         }
         return size;
+    }
+
+    public static void deleteFile(File folder) {
+        if (!folder.exists()) {
+            return;
+        }
+
+        File[] fileArray = folder.listFiles();
+        for (File file : fileArray) {
+            if (file.isDirectory()) {
+                deleteFile(file);
+            } else {
+                file.delete();
+            }
+        }
     }
 }

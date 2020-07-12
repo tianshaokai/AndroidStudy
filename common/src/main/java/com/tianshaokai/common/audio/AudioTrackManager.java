@@ -61,6 +61,9 @@ public class AudioTrackManager {
         ExecutorServiceUtils.getSingleExecutors().execute(new Runnable() {
             @Override
             public void run() {
+                if (isPlaying) {
+                    stop();
+                }
                 audioTrack.play();
                 isPlaying = true;
                 byte[] buffer = new byte[bufferSize];
@@ -88,6 +91,7 @@ public class AudioTrackManager {
 
     public void stop() {
         isPlaying = false;
+        audioTrack.stop();
     }
 
 }
