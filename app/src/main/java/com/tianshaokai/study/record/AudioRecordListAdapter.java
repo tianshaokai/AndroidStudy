@@ -21,8 +21,7 @@ public class AudioRecordListAdapter extends RecyclerView.Adapter<AudioRecordList
     private List<File> fileList;
 
     public AudioRecordListAdapter(List<File> mObjects) {
-        this.fileList = new ArrayList<>();
-        fileList.addAll(mObjects);
+        this.fileList = new ArrayList<>(mObjects);
     }
 
     @NonNull
