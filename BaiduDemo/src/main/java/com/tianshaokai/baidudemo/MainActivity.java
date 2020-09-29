@@ -1,6 +1,5 @@
 package com.tianshaokai.baidudemo;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -51,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     //    BD09ll（百度经纬度坐标)
     private String CoorType_BD09ll = "BD09ll";
 
-    private FloorPopupWindow popupWindow;
+    private FloorView floorView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,15 +60,13 @@ public class MainActivity extends AppCompatActivity {
         mMapView = findViewById(R.id.baiduMapView);
         mBaiduMap = mMapView.getMap();
 
-        //开启地图的定位图层
-        mBaiduMap.setMyLocationEnabled(true);
-        startLocation();
-
         radioGroup = findViewById(R.id.radioGroup);
 
         button1 = findViewById(R.id.button1);
         button2 = findViewById(R.id.button2);
         tip = findViewById(R.id.tip);
+
+        floorView = findViewById(R.id.floorView);
 
         checkbox1 = findViewById(R.id.checkbox1);
         checkbox2 = findViewById(R.id.checkbox2);
@@ -91,51 +88,53 @@ public class MainActivity extends AppCompatActivity {
         });
 
         location = findViewById(R.id.location);
-        indoorMap = findViewById(R.id.indoorMap);
         location.setOnClickListener(onClickListener);
-        indoorMap.setOnClickListener(onClickListener);
 
-//        MapStatus.Builder builder = new MapStatus.Builder();
-//        builder.zoom(17.0f);
-//        mBaiduMap.setMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
+        initIndoorMap();
 
+        initLocation();
 
 
+    }
+
+    /**
+     * 初始化室内地图
+     */
+    private void initIndoorMap() {
         mBaiduMap.setIndoorEnable(true);//打开室内图，默认为关闭状态
-
+        floorView.setCallBack(new FloorView.CallBack() {
+            @Override
+            public void onClick(String strFloor, String floorID) {
+                switchIndoorFloor(strFloor, floorID);
+            }
+        });
         mBaiduMap.setOnBaseIndoorMapListener(new BaiduMap.OnBaseIndoorMapListener() {
             @Override
-            public void onBaseIndoorMapMode(boolean on, MapBaseIndoorMapInfo mapBaseIndoorMapInfo) {
-                if (on) {
+            public void onBaseIndoorMapMode(boolean in, MapBaseIndoorMapInfo mapBaseIndoorMapInfo) {
+                if (in) {
                     // 进入室内图
                     // 通过获取回调参数 mapBaseIndoorMapInfo 便可获取室内图信
                     //息，包含楼层信息，室内ID等
                     Log.d(TAG, "进入室内地图");
-
                     tip.setVisibility(View.VISIBLE);
-                    if (mapBaseIndoorMapInfo != null && mapBaseIndoorMapInfo.getFloors() != null) {
-                        if (popupWindow == null) {
-                            popupWindow = new FloorPopupWindow();
-                        }
-
-                        popupWindow.showAsDropDown(tip, mapBaseIndoorMapInfo.getFloors());
-
-                        for (int i = 0; i < mapBaseIndoorMapInfo.getFloors().size(); i++) {
-                            Log.d(TAG, "楼层: " + mapBaseIndoorMapInfo.getFloors().get(i));
-                        }
-                    } else {
-                        Log.d(TAG, "移除了室内地图,on: " + on);
-                    }
-
+                    floorView.setVisibility(View.VISIBLE);
+                    floorView.showFloor(mapBaseIndoorMapInfo);
                 } else {
                     // 移除室内图
                     Log.d(TAG, "移除了室内地图");
+                    tip.setVisibility(View.GONE);
+                    floorView.setVisibility(View.GONE);
                 }
             }
         });
     }
 
-    private void changeFloor(String currentFloor, String id) {
+    /**
+     * 切换室内楼层
+     * @param currentFloor 楼层
+     * @param id           室内id
+     */
+    private void switchIndoorFloor(String currentFloor, String id) {
         MapBaseIndoorMapInfo.SwitchFloorError switchFloorError = mBaiduMap.switchBaseIndoorMapFloor(currentFloor, id);
         switch (switchFloorError) {
             case SWITCH_OK:          //切换成功
@@ -153,9 +152,23 @@ public class MainActivity extends AppCompatActivity {
             case SWITCH_ERROR:       //切换楼层失败
                 Log.e(TAG, "进入室内地图 SWITCH_ERROR");
                 break;
-
         }
     }
+
+    /**
+     * 初始化定位功能
+     */
+    private void initLocation() {
+        //开启地图的定位图层
+        mBaiduMap.setMyLocationEnabled(true);
+        startLocation();
+
+//        MapStatus.Builder builder = new MapStatus.Builder();
+//        builder.zoom(18.0f);
+//        mBaiduMap.setMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
+    }
+
+
 
     private View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
@@ -194,24 +207,54 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private void startLocation() {
-        //定位初始化
+        ////定位服务的客户端。宿主程序在客户端声明此类，并调用，目前只支持在主线程中启动
         mLocationClient = new LocationClient(getApplicationContext());
 
         //通过LocationClientOption设置LocationClient相关参数
-        LocationClientOption option = new LocationClientOption();
+        LocationClientOption locationOption = new LocationClientOption();
 
         //可选，设置是否使用gps，默认false
         //使用高精度和仅用设备两种定位模式的，参数必须设置为true
-        option.setOpenGps(true);                // 打开gps
-        option.setCoorType(CoorType_BD09ll);    // 设置坐标类型
+        locationOption.setOpenGps(true);                // 打开gps
+        locationOption.setCoorType(CoorType_BD09ll);    // 设置坐标类型
 
         //可选，设置发起定位请求的间隔，int类型，单位ms
         //如果设置为0，则代表单次定位，即仅定位一次，默认为0
         //如果设置非0，需设置1000ms以上才有效
-        option.setScanSpan(1000);
+        locationOption.setScanSpan(1000);
+
+        //可选，默认高精度，设置定位模式，高精度，低功耗，仅设备
+        locationOption.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
+
+        //可选，设置是否需要地址信息，默认不需要
+        locationOption.setIsNeedAddress(true);
+        //可选，设置是否需要地址描述
+        locationOption.setIsNeedLocationDescribe(true);
+        //可选，设置是否需要设备方向结果
+        locationOption.setNeedDeviceDirect(false);
+        //可选，默认false，设置是否当gps有效时按照1S1次频率输出GPS结果
+        locationOption.setLocationNotify(true);
+        //可选，默认true，定位SDK内部是一个SERVICE，并放到了独立进程，设置是否在stop的时候杀死这个进程，默认不杀死
+        locationOption.setIgnoreKillProcess(true);
+        //可选，默认false，设置是否需要位置语义化结果，可以在BDLocation.getLocationDescribe里得到，结果类似于“在北京天安门附近”
+        locationOption.setIsNeedLocationDescribe(true);
+
+        //可选，默认false，设置是否需要POI结果，可以在BDLocation.getPoiList里得到
+        locationOption.setIsNeedLocationPoiList(true);
+        //可选，默认false，设置是否收集CRASH信息，默认收集
+        locationOption.SetIgnoreCacheException(false);
+
+
+
+        //可选，默认false，设置定位时是否需要海拔信息，默认不需要，除基础定位版本都可用
+        locationOption.setIsNeedAltitude(false);
+        //设置打开自动回调位置模式，该开关打开后，期间只要定位SDK检测到位置变化就会主动回调给开发者，该模式下开发者无需再关心定位间隔是多少，定位SDK本身发现位置变化就会及时回调给开发者
+        locationOption.setOpenAutoNotifyMode();
+        //设置打开自动回调位置模式，该开关打开后，期间只要定位SDK检测到位置变化就会主动回调给开发者
+        locationOption.setOpenAutoNotifyMode(3000,1, LocationClientOption.LOC_SENSITIVITY_HIGHT);
 
         //设置locationClientOption
-        mLocationClient.setLocOption(option);
+        mLocationClient.setLocOption(locationOption);
 
         //注册LocationListener监听器
         MyLocationListener myLocationListener = new MyLocationListener();
@@ -219,7 +262,9 @@ public class MainActivity extends AppCompatActivity {
         //开启地图定位图层
         mLocationClient.start();
 
+        //初始化罗盘定位
         myOrientationListener = new MyOrientationListener(this);
+        //开始定位
         myOrientationListener.start();
     }
 
@@ -230,33 +275,28 @@ public class MainActivity extends AppCompatActivity {
             if (location == null || mMapView == null){
                 return;
             }
-            double latitude = location.getLatitude();       //获取纬度信息
-            double longitude = location.getLongitude();     //获取经度信息
-            float radius = location.getRadius();            //获取定位精度，默认值为0.0f
 
             String coorType = location.getCoorType();
 
             MyLocationData locData = new MyLocationData.Builder()
-                    .accuracy(radius)
-                    // 此处设置开发者获取到的方向信息，顺时针0-360
-                    .direction(location.getDirection())
-                    .latitude(latitude)
-                    .longitude(longitude)
+                    .accuracy(location.getRadius())  //获取定位精度，默认值为0.0f
+                    .direction(location.getDirection()) // 此处设置开发者获取到的方向信息，顺时针0-360
+                    .latitude(location.getLatitude()) //获取纬度信息
+                    .longitude(location.getLongitude())//获取经度信息
                     .build();
             //设置图标在地图上的位置
             mBaiduMap.setMyLocationData(locData);
+
+
             MyLocationConfiguration.LocationMode mCurrentMode = MyLocationConfiguration.LocationMode.FOLLOWING;
             BitmapDescriptor mCurrentMarker = BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher_foreground);
+            MyLocationConfiguration myLocationConfiguration = new MyLocationConfiguration(mCurrentMode, true, mCurrentMarker);
+            mBaiduMap.setMyLocationConfiguration(myLocationConfiguration);
 
-
-
-//            MyLocationConfiguration myLocationConfiguration = new MyLocationConfiguration(mCurrentMode, true, mCurrentMarker);
-//            mBaiduMap.setMyLocationConfiguration(myLocationConfiguration);
-
-//            // 开始移动百度地图的定位地点到中心位置
-//            LatLng ll = new LatLng(location.getLatitude(), location.getLongitude());
-//            MapStatusUpdate u = MapStatusUpdateFactory.newLatLngZoom(ll, 17.0f);
-//            mBaiduMap.animateMapStatus(u);
+            // 开始移动百度地图的定位地点到中心位置
+            LatLng ll = new LatLng(location.getLatitude(), location.getLongitude());
+            MapStatusUpdate u = MapStatusUpdateFactory.newLatLngZoom(ll, 17.0f);
+            mBaiduMap.animateMapStatus(u);
         }
     }
 
