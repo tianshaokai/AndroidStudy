@@ -7,21 +7,21 @@
     android:fitsSystemWindows="true"
     tools:context=".canvasdemo.MainActivity">
 
- <!--   <com.tianshaokai.canvasdemo.myview.XfermodeCanvas
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />-->
+<!--    <com.tianshaokai.app.canvasdemo.myview.XfermodeCanvas-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent" />-->
 
- <!--   <com.tianshaokai.canvasdemo.view.AvoidXfermodeView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />-->
+<!--    <com.tianshaokai.app.canvasdemo.view.AvoidXfermodeView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
 
-<!--    <com.tianshaokai.canvasdemo.view.PorterDuffXfermodeView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />-->
+<!--    <com.tianshaokai.app.canvasdemo.view.PorterDuffXfermodeView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
 
-   <!-- <com.tianshaokai.canvasdemo.view.PoterDuffLoadingView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />-->
+<!--    <com.tianshaokai.app.canvasdemo.view.PoterDuffLoadingView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
 
 <!--    <com.tianshaokai.canvasdemo.customviewdemo.views.CustomView-->
 <!--        android:layout_width="match_parent"-->
@@ -36,103 +36,98 @@
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="wrap_content" />-->
 
-    <!--  <com.tianshaokai.canvasdemo.customviewdemo.views.PorterDuffView
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content" />-->
+<!--    <com.tianshaokai.app.canvasdemo.customviewdemo.views.PorterDuffView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
     
-  <!--  <com.tianshaokai.canvasdemo.customviewdemo.views.BlurMaskFilterView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />-->
-    
-    <!--<com.tianshaokai.canvasdemo.customviewdemo.views.ECGView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />-->
-
-   <!-- <com.tianshaokai.canvasdemo.customviewdemo.views.EmbossMaskFilterView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />-->
-
-<!--    <com.tianshaokai.canvasdemo.customviewdemo.views.FontView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />-->
-
-<!--    <com.tianshaokai.canvasdemo.customviewdemo.views.StaticLayoutView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />-->
-
-<!--    <com.tianshaokai.canvasdemo.customviewdemo.views.ShadowView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />-->
-
-   <!-- <com.tianshaokai.canvasdemo.customviewdemo.views.PathEffectView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />-->
-    
-<!--    <com.tianshaokai.canvasdemo.customviewdemo.views.BrickView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />-->
-
-<!--    <com.tianshaokai.canvasdemo.customviewdemo.views.DreamEffectView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />-->
-
-<!--    <com.tianshaokai.canvasdemo.customviewdemo.views.MatrixImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />-->
-<!--    <com.tianshaokai.canvasdemo.customviewdemo.views.MatrixView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />-->
-<!--    <com.tianshaokai.canvasdemo.customviewdemo.views.MultiCricleView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />-->
-<!--    <com.tianshaokai.canvasdemo.customviewdemo.views.ReflectView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />-->
-
-<!--    <com.tianshaokai.canvasdemo.customviewdemo.views.ShaderView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />-->
-
-<!--    <com.tianshaokai.canvasdemo.myview.CustomView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />-->
-
-<!--    <com.tianshaokai.canvasdemo.customviewdemo.views.BitmapMeshView-->
+<!--    <com.tianshaokai.app.canvasdemo.customviewdemo.views.BlurMaskFilterView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
+<!--    -->
+<!--    <com.tianshaokai.app.canvasdemo.customviewdemo.views.ECGView-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="wrap_content" />-->
 
-<!--    <com.tianshaokai.canvasdemo.customviewdemo.views.BitmapMeshView2-->
+<!--    <com.tianshaokai.app.canvasdemo.customviewdemo.views.EmbossMaskFilterView-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="wrap_content" />-->
 
-<!--    <com.tianshaokai.canvasdemo.customviewdemo.views.CanvasView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />-->
-
-<!--    <com.tianshaokai.canvasdemo.customviewdemo.views.PathView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />-->
-
-<!--    <com.tianshaokai.canvasdemo.customviewdemo.views.PolylineView-->
+<!--    <com.tianshaokai.app.canvasdemo.customviewdemo.views.FontView-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="wrap_content" />-->
 
-<!--    <com.tianshaokai.canvasdemo.customviewdemo.views.WaveView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />-->
+<!--    <com.tianshaokai.app.canvasdemo.customviewdemo.views.StaticLayoutView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
 
-<!--    <com.tianshaokai.canvasdemo.customviewdemo.views.LayerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />-->
+<!--    <com.tianshaokai.app.canvasdemo.customviewdemo.views.ShadowView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
 
-<!--    <com.tianshaokai.canvasdemo.myview.DrawView-->
+<!--    <com.tianshaokai.app.canvasdemo.customviewdemo.views.PathEffectView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
+    
+<!--    <com.tianshaokai.app.canvasdemo.customviewdemo.views.BrickView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
+
+<!--    <com.tianshaokai.app.canvasdemo.customviewdemo.views.DreamEffectView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
+
+<!--    <com.tianshaokai.app.canvasdemo.customviewdemo.views.MatrixImageView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
+
+<!--    <com.tianshaokai.app.canvasdemo.customviewdemo.views.MatrixView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
+
+<!--    <com.tianshaokai.app.canvasdemo.customviewdemo.views.MultiCricleView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
+
+<!--    <com.tianshaokai.app.canvasdemo.customviewdemo.views.ReflectView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
+
+<!--    <com.tianshaokai.app.canvasdemo.customviewdemo.views.ShaderView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
+
+<!--    <com.tianshaokai.app.canvasdemo.myview.CustomView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent" />-->
+
+<!--    <com.tianshaokai.app.canvasdemo.customviewdemo.views.BitmapMeshView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
+
+<!--    <com.tianshaokai.app.canvasdemo.customviewdemo.views.BitmapMeshView2-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
+
+<!--    <com.tianshaokai.app.canvasdemo.customviewdemo.views.CanvasView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
+
+<!--    <com.tianshaokai.app.canvasdemo.customviewdemo.views.PathView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent" />-->
+
+<!--    <com.tianshaokai.app.canvasdemo.customviewdemo.views.WaveView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
+
+<!--    <com.tianshaokai.app.canvasdemo.customviewdemo.views.LayerView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
+
+<!--    <com.tianshaokai.app.canvasdemo.myview.DrawView-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="match_parent"-->
-<!--        android:layout_marginTop="160dp"-->
-<!--        android:layout_marginLeft="10dp"/>-->
+<!--        android:layout_margin="10dp"/>-->
 
-<!--    <com.tianshaokai.canvasdemo.myview.MyDraw-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content" />-->
 
 </android.support.design.widget.CoordinatorLayout>

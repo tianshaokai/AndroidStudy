@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * WaveView
+ * WaveView 水波纹
  *	link(http://blog.csdn.net/aigestudio/article/details/41960507)
  * @author Aige
  * @since 2014/12/12

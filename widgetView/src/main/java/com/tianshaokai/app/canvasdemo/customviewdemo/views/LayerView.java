@@ -42,7 +42,7 @@ public class LayerView extends View {
 
 	@Override
 	protected void onDraw(Canvas canvas) {
-//		canvas.save(Canvas.MATRIX_SAVE_FLAG);
+		canvas.save();
 		Matrix matrix = new Matrix();
 		matrix.setScale(0.8F, 0.35F);
 		matrix.postTranslate(100, 100);

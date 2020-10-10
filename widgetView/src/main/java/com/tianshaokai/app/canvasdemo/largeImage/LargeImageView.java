@@ -222,7 +222,10 @@ public class LargeImageView extends FrameLayout {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inPreferredConfig = Bitmap.Config.RGB_565;
             options.inSampleSize = 2; // 缩放比例，可根据屏幕宽高调整
-            mBgView.setImageDrawable(new BitmapDrawable(BitmapFactory.decodeStream(is, null, options)));
+
+            Bitmap bitmap = BitmapFactory.decodeStream(is, null, options);
+
+            mBgView.setImageDrawable(new BitmapDrawable(getResources(), bitmap));
             mBgView.setBackgroundColor(Color.BLUE);
             mBgView.setScaleType(ImageView.ScaleType.FIT_XY);
 

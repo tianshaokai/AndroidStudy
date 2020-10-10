@@ -30,17 +30,17 @@ public class PathView extends View {
 		mPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
 		mPaint.setStyle(Paint.Style.STROKE);
 		mPaint.setColor(Color.CYAN);
-		mPaint.setStrokeWidth(5);
+		mPaint.setStrokeWidth(25);
 
 		mTextPaint = new TextPaint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG | Paint.LINEAR_TEXT_FLAG);
 		mTextPaint.setColor(Color.DKGRAY);
-		mTextPaint.setTextSize(20);
+		mTextPaint.setTextSize(30);
 
 		// 实例化路径
 		mPath = new Path();
 
 		// 添加一条弧线到Path中
-		RectF oval = new RectF(100, 100, 300, 400);
+		RectF oval = new RectF(100, 100, 500, 800);
 		mPath.addOval(oval, Path.Direction.CCW);
 	}
 

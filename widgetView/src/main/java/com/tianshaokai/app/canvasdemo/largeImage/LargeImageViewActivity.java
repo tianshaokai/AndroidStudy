@@ -1,4 +1,4 @@
-package com.tianshaokai.app.canvasdemo;
+package com.tianshaokai.app.canvasdemo.largeImage;
 
 import android.os.Bundle;
 import android.os.Environment;
@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.tianshaokai.app.R;
-import com.tianshaokai.app.canvasdemo.largeImage.LargeImageView;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,12 +23,12 @@ public class LargeImageViewActivity extends AppCompatActivity {
 
         mLargeImageView = (LargeImageView) findViewById(R.id.id_largetImageview);
 
-      /*  try {
-            InputStream inputStream = getAssets().open("qm.jpg");
-            mLargeImageView.setImageInputStream(inputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
+//        try {
+//            InputStream inputStream = getAssets().open("qm.jpg");
+//            mLargeImageView.setImageInputStream(inputStream);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         findViewById(R.id.btnChange).setOnClickListener(new View.OnClickListener() {
             @Override
