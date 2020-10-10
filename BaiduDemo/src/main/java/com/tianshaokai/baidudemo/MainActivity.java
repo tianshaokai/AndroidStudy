@@ -18,7 +18,6 @@ import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.MapBaseIndoorMapInfo;
-import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
@@ -51,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
     private String CoorType_BD09ll = "BD09ll";
 
     private FloorView floorView;
+
+    private BitmapDescriptor bitmapLocationIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,13 +160,12 @@ public class MainActivity extends AppCompatActivity {
      * 初始化定位功能
      */
     private void initLocation() {
+        //初始化定位图标
+        bitmapLocationIcon = BitmapDescriptorFactory.fromResource(R.mipmap.bus_bsdl_location_icon);
+
         //开启地图的定位图层
         mBaiduMap.setMyLocationEnabled(true);
         startLocation();
-
-//        MapStatus.Builder builder = new MapStatus.Builder();
-//        builder.zoom(18.0f);
-//        mBaiduMap.setMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
     }
 
 
@@ -288,14 +288,13 @@ public class MainActivity extends AppCompatActivity {
             mBaiduMap.setMyLocationData(locData);
 
 
-            MyLocationConfiguration.LocationMode mCurrentMode = MyLocationConfiguration.LocationMode.FOLLOWING;
-            BitmapDescriptor mCurrentMarker = BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher_foreground);
-            MyLocationConfiguration myLocationConfiguration = new MyLocationConfiguration(mCurrentMode, true, mCurrentMarker);
+            MyLocationConfiguration.LocationMode mCurrentMode = MyLocationConfiguration.LocationMode.NORMAL;
+            MyLocationConfiguration myLocationConfiguration = new MyLocationConfiguration(mCurrentMode, true, bitmapLocationIcon);
             mBaiduMap.setMyLocationConfiguration(myLocationConfiguration);
 
             // 开始移动百度地图的定位地点到中心位置
             LatLng ll = new LatLng(location.getLatitude(), location.getLongitude());
-            MapStatusUpdate u = MapStatusUpdateFactory.newLatLngZoom(ll, 17.0f);
+            MapStatusUpdate u = MapStatusUpdateFactory.newLatLngZoom(ll, 16.5f);
             mBaiduMap.animateMapStatus(u);
         }
     }
