@@ -162,9 +162,6 @@ public class MainActivity extends AppCompatActivity {
     private void initLocation() {
         //初始化定位图标
         bitmapLocationIcon = BitmapDescriptorFactory.fromResource(R.mipmap.bus_bsdl_location_icon);
-
-        //开启地图的定位图层
-        mBaiduMap.setMyLocationEnabled(true);
         startLocation();
     }
 
@@ -300,6 +297,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        //开启定位的允许
+        //开启地图的定位图层
+        mBaiduMap.setMyLocationEnabled(true);
+        if (!mLocationClient.isStarted()) {
+            mLocationClient.start();
+            //开启方向传感器
+            myOrientationListener.start();
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        //关闭定位
+        mBaiduMap.setMyLocationEnabled(false);
+        mLocationClient.stop();
+        //停止方向传感器
+        myOrientationListener.stop();
+    }
+
+
+    @Override
     protected void onResume() {
         super.onResume();
         //在activity执行onResume时执行mMapView. onResume ()，实现地图生命周期管理
@@ -316,9 +337,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mLocationClient.stop();
-        myOrientationListener.stop();
-        mBaiduMap.setMyLocationEnabled(false);
         //在activity执行onDestroy时执行mMapView.onDestroy()，实现地图生命周期管理
         mMapView.onDestroy();
         mMapView = null;
