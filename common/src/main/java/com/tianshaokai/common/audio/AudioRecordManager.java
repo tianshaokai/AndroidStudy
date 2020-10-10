@@ -19,7 +19,8 @@ public class AudioRecordManager {
     // 声音来源
     private static int audioSource = MediaRecorder.AudioSource.MIC;
     // 采样率 Hz
-    private static int sampleRate = 44100;
+//    private static int sampleRate = 44100;
+    private static int sampleRate = 16000;
     // 音频通道的配置 MONO 单声道
     private static int channelConfig = AudioFormat.CHANNEL_IN_MONO;
     // 返回音频数据的格式
