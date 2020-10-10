@@ -2,7 +2,7 @@ include ':app'
 
 include ':common'
 
-include ':canvas'
+//include ':canvas'
 
 include ':widgetView'
 
