@@ -9,7 +9,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
@@ -277,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
     public class MyLocationListener extends BDAbstractLocationListener {
 
         //定位请求回调接口
-        private boolean isFirstIn = true;
+        private boolean isFirstLocation = true;
 
         @Override
         public void onReceiveLocation(BDLocation location) {
@@ -303,8 +302,8 @@ public class MainActivity extends AppCompatActivity {
             mBaiduMap.setMyLocationConfiguration(myLocationConfiguration);
 
             //判断是否为第一次定位,是的话需要定位到用户当前位置
-            if (isFirstIn) {
-                isFirstIn = false;
+            if (isFirstLocation) {
+                isFirstLocation = false;
                 // 开始移动百度地图的定位地点到中心位置
                 LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
                 MapStatusUpdate u = MapStatusUpdateFactory.newLatLngZoom(latLng, 17f);
