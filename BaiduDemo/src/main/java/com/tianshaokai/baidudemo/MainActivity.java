@@ -9,6 +9,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
@@ -52,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
     private FloorView floorView;
 
     private BitmapDescriptor bitmapLocationIcon;
+
+    private float mCurrentX;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -228,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
         //可选，设置是否需要地址描述
         locationOption.setIsNeedLocationDescribe(true);
         //可选，设置是否需要设备方向结果
-        locationOption.setNeedDeviceDirect(false);
+        locationOption.setNeedDeviceDirect(true);
         //可选，默认false，设置是否当gps有效时按照1S1次频率输出GPS结果
         locationOption.setLocationNotify(true);
         //可选，默认true，定位SDK内部是一个SERVICE，并放到了独立进程，设置是否在stop的时候杀死这个进程，默认不杀死
@@ -261,11 +264,21 @@ public class MainActivity extends AppCompatActivity {
 
         //初始化罗盘定位
         myOrientationListener = new MyOrientationListener(this);
+        myOrientationListener.setOnOrientationListener(new MyOrientationListener.OnOrientationListener() {
+            @Override
+            public void onOrientationChanged(float x) {
+                mCurrentX = x;
+            }
+        });
         //开始定位
         myOrientationListener.start();
     }
 
     public class MyLocationListener extends BDAbstractLocationListener {
+
+        //定位请求回调接口
+        private boolean isFirstIn = true;
+
         @Override
         public void onReceiveLocation(BDLocation location) {
             //mapView 销毁后不在处理新接收的位置
@@ -277,7 +290,7 @@ public class MainActivity extends AppCompatActivity {
 
             MyLocationData locData = new MyLocationData.Builder()
                     .accuracy(location.getRadius())  //获取定位精度，默认值为0.0f
-                    .direction(location.getDirection()) // 此处设置开发者获取到的方向信息，顺时针0-360
+                    .direction(mCurrentX) // 此处设置开发者获取到的方向信息，顺时针0-360
                     .latitude(location.getLatitude()) //获取纬度信息
                     .longitude(location.getLongitude())//获取经度信息
                     .build();
@@ -289,10 +302,16 @@ public class MainActivity extends AppCompatActivity {
             MyLocationConfiguration myLocationConfiguration = new MyLocationConfiguration(mCurrentMode, true, bitmapLocationIcon);
             mBaiduMap.setMyLocationConfiguration(myLocationConfiguration);
 
-            // 开始移动百度地图的定位地点到中心位置
-            LatLng ll = new LatLng(location.getLatitude(), location.getLongitude());
-            MapStatusUpdate u = MapStatusUpdateFactory.newLatLngZoom(ll, 16.5f);
-            mBaiduMap.animateMapStatus(u);
+            //判断是否为第一次定位,是的话需要定位到用户当前位置
+            if (isFirstIn) {
+                isFirstIn = false;
+                // 开始移动百度地图的定位地点到中心位置
+                LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                MapStatusUpdate u = MapStatusUpdateFactory.newLatLngZoom(latLng, 17f);
+                mBaiduMap.animateMapStatus(u);
+            }
+
+
         }
     }
 
