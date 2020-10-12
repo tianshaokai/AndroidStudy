@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@id/ufo_root"
+    android:layout_width="@dimen/aihome_ufo_width"
+    android:layout_height="@dimen/aihome_ufo_height"
+    android:layout_gravity="bottom|center"
+    android:clickable="false"
+    android:splitMotionEvents="false"
+    android:tag="layout/aihome_ufo_0">
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="58.0dip"
+        android:alpha="0.0"
+        android:clickable="true"
+        android:padding="0.0dip"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@id/ufo_bg"
+        android:layout_width="fill_parent"
+        android:layout_height="75.0dip"
+        android:alpha="0.0"
+        android:clickable="false"
+        android:padding="0.0dip"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <View
+            android:id="@id/left"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:background="@drawable/aihome_hidden_tab_bg_left"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/mid" />
+
+        <View
+            android:id="@id/mid"
+            android:layout_width="60.0dip"
+            android:layout_height="fill_parent"
+            android:background="@drawable/aihome_hidden_tab_bg_mid"
+            app:layout_constraintLeft_toLeftOf="@id/left"
+            app:layout_constraintRight_toRightOf="@id/right" />
+
+        <View
+            android:id="@id/right"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:background="@drawable/aihome_hidden_tab_bg_right"
+            app:layout_constraintLeft_toRightOf="@id/mid"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <View
+            android:layout_width="4.0dip"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="12.5dip"
+            android:background="@android:color/white"
+            app:layout_constraintLeft_toRightOf="@id/left"
+            app:layout_constraintRight_toLeftOf="@id/mid" />
+
+        <View
+            android:layout_width="4.0dip"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="12.5dip"
+            android:background="@android:color/white"
+            app:layout_constraintLeft_toRightOf="@id/mid"
+            app:layout_constraintRight_toLeftOf="@id/right" />
+    </android.support.constraint.ConstraintLayout>
+
+    <View
+        android:id="@id/left_wing"
+        android:layout_width="143.0dip"
+        android:layout_height="81.0dip"
+        android:background="@drawable/aihome_ufo_wing_left"
+        android:clickable="false"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/middle_line"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@id/right_wing"
+        android:layout_width="143.0dip"
+        android:layout_height="81.0dip"
+        android:background="@drawable/aihome_ufo_wing_right"
+        android:clickable="false"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/middle_line"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@id/nearby_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16.0dip"
+        android:clickable="false"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/home_route_btn_container"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@id/nearby_btn_inner"
+            android:layout_width="78.5dip"
+            android:layout_height="38.549988dip"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="5.0dip">
+
+            <ImageView
+                android:id="@id/nearby_btn_img"
+                android:layout_width="27.0dip"
+                android:layout_height="27.0dip"
+                android:background="@drawable/aihome_tab_nearby_default" />
+
+            <TextView
+                android:id="@id/nearby_btn_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1.0dip"
+                android:includeFontPadding="false"
+                android:text="周边"
+                android:textColor="#ff222222"
+                android:textSize="16.0dip"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="1.0dip"
+                android:layout_height="1.0px" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@id/duhelper_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="19.0dip"
+        android:clickable="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/home_route_btn_container"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@id/duhelper_btn_inner"
+            android:layout_width="78.5dip"
+            android:layout_height="38.549988dip"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingTop="5.0dip">
+
+            <ImageView
+                android:id="@id/duhelper_right_img"
+                android:layout_width="27.0dip"
+                android:layout_height="27.0dip"
+                android:background="@drawable/aihome_tab_route_default" />
+
+            <TextView
+                android:id="@id/duhelper_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1.0dip"
+                android:includeFontPadding="false"
+                android:text="出行"
+                android:textColor="#ff222222"
+                android:textSize="16.0dip"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="1.0dip"
+                android:layout_height="1.0px" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <ImageView
+        android:id="@id/home_route_btn_white"
+        android:layout_width="@dimen/aihome_ufo_route_back_wh"
+        android:layout_height="@dimen/aihome_ufo_route_back_wh"
+        android:background="@drawable/aihome_route_btn_bg"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@id/home_route_btn_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@id/home_route_btn"
+            android:layout_width="@dimen/aihome_ufo_route_wh"
+            android:layout_height="@dimen/aihome_ufo_route_wh"
+            android:background="@drawable/aihome_route_btn"
+            android:contentDescription="@string/acb_main_route"
+            android:visibility="visible" />
+
+        <ImageView
+            android:id="@id/home_route_btn_text"
+            android:layout_width="38.0dip"
+            android:layout_height="38.0dip"
+            android:layout_gravity="center"
+            android:background="@drawable/aihome_route_btn_text"
+            android:visibility="visible" />
+    </FrameLayout>
+
+    <View
+        android:id="@id/middle_line"
+        android:layout_width="1.0dip"
+        android:layout_height="1.0px"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>
