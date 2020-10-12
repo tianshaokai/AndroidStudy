@@ -3,13 +3,14 @@ package com.tianshaokai.common.utils.preference;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 
 import com.tianshaokai.common.utils.LogUtil;
 import com.tianshaokai.common.utils.executor.ExecutorsManager;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
@@ -17,7 +18,8 @@ import java.util.concurrent.ExecutorService;
 public class CachePreference {
 
     private static final ExecutorService WORKER = ExecutorsManager.getInstance().getNewPreferenceThreadPool();
-    private final Map<String, Object> memoryCache = new ConcurrentHashMap<String, Object>();
+    private final Map<String, Object> memoryCache = new ConcurrentHashMap<>();
+    private final Map<String, JSONObject> memoryCacheJson = new ConcurrentHashMap<>();
     private final SharedPreferences preferences;
 
     public CachePreference(Context paramContext, String paramString) {
@@ -31,41 +33,6 @@ public class CachePreference {
     public void putString(String paramKey, String paramValue) {
         memoryCache.put(paramKey, paramValue);
         asyncPut(paramKey, paramValue);
-    }
-
-    public void putInt(String paramKey, int paramValue) {
-        memoryCache.put(paramKey, paramValue);
-        asyncPut(paramKey, paramValue);
-    }
-
-    public void putLong(String paramKey, long paramValue) {
-        memoryCache.put(paramKey, paramValue);
-        asyncPut(paramKey, paramValue);
-    }
-
-    public void putDouble(String paramKey, double paramValue) {
-        memoryCache.put(paramKey, paramValue);
-        asyncPut(paramKey, paramValue);
-    }
-
-    public void putFloat(String paramKey, float paramValue) {
-        memoryCache.put(paramKey, paramValue);
-        asyncPut(paramKey, paramValue);
-    }
-
-    public void putBoolean(String paramKey, boolean paramValue) {
-        memoryCache.put(paramKey, paramValue);
-        asyncPut(paramKey, paramValue);
-    }
-
-    public void putJSON(JSONObject paramJSONObject) {
-        Iterator<String> sIterator = paramJSONObject.keys();
-        while (sIterator.hasNext()) {
-            String key = sIterator.next();
-            Object value = paramJSONObject.opt(key);
-            memoryCache.put(key, value);
-        }
-        WORKER.execute(new PutRunnable(paramJSONObject));
     }
 
     public String getString(String paramKey, String paramValue) {
@@ -88,6 +55,11 @@ public class CachePreference {
         return paramValue;
     }
 
+    public void putInt(String paramKey, int paramValue) {
+        memoryCache.put(paramKey, paramValue);
+        asyncPut(paramKey, paramValue);
+    }
+
     public int getInt(String paramKey, int paramInt) {
         Object localObject = this.memoryCache.get(paramKey);
         if (localObject != null) {
@@ -103,6 +75,11 @@ public class CachePreference {
             }
         }
         return paramInt;
+    }
+
+    public void putLong(String paramKey, long paramValue) {
+        memoryCache.put(paramKey, paramValue);
+        asyncPut(paramKey, paramValue);
     }
 
     public long getLong(String paramKey, long paramLong) {
@@ -122,38 +99,9 @@ public class CachePreference {
         return paramLong;
     }
 
-    public float getFloat(String paramKey, float paramFloat) {
-        Object localObject = this.memoryCache.get(paramKey);
-        if (localObject != null) {
-            if ((localObject instanceof Float)) {
-                return ((Float) localObject);
-            }
-            return paramFloat;
-        } else {
-            if (this.preferences.contains(paramKey)) {
-                paramFloat = this.preferences.getFloat(paramKey, paramFloat);
-                this.memoryCache.put(paramKey, paramFloat);
-                return paramFloat;
-            }
-        }
-        return paramFloat;
-    }
-
-    public boolean getBoolean(String paramKey, boolean paramBoolean) {
-        Object localObject = this.memoryCache.get(paramKey);
-        if (localObject != null) {
-            if ((localObject instanceof Boolean)) {
-                return ((Boolean) localObject);
-            }
-            return paramBoolean;
-        } else {
-            if (this.preferences.contains(paramKey)) {
-                paramBoolean = this.preferences.getBoolean(paramKey, paramBoolean);
-                this.memoryCache.put(paramKey, paramBoolean);
-                return paramBoolean;
-            }
-        }
-        return paramBoolean;
+    public void putDouble(String paramKey, double paramValue) {
+        memoryCache.put(paramKey, paramValue);
+        asyncPut(paramKey, paramValue);
     }
 
     public double getDouble(String paramKey, double paramDouble) {
@@ -174,6 +122,78 @@ public class CachePreference {
         return paramDouble;
     }
 
+    public void putFloat(String paramKey, float paramValue) {
+        memoryCache.put(paramKey, paramValue);
+        asyncPut(paramKey, paramValue);
+    }
+
+    public float getFloat(String paramKey, float paramFloat) {
+        Object localObject = this.memoryCache.get(paramKey);
+        if (localObject != null) {
+            if ((localObject instanceof Float)) {
+                return ((Float) localObject);
+            }
+            return paramFloat;
+        } else {
+            if (this.preferences.contains(paramKey)) {
+                paramFloat = this.preferences.getFloat(paramKey, paramFloat);
+                this.memoryCache.put(paramKey, paramFloat);
+                return paramFloat;
+            }
+        }
+        return paramFloat;
+    }
+
+    public void putBoolean(String paramKey, boolean paramValue) {
+        memoryCache.put(paramKey, paramValue);
+        asyncPut(paramKey, paramValue);
+    }
+
+    public boolean getBoolean(String paramKey, boolean paramBoolean) {
+        Object localObject = this.memoryCache.get(paramKey);
+        if (localObject != null) {
+            if ((localObject instanceof Boolean)) {
+                return ((Boolean) localObject);
+            }
+            return paramBoolean;
+        } else {
+            if (this.preferences.contains(paramKey)) {
+                paramBoolean = this.preferences.getBoolean(paramKey, paramBoolean);
+                this.memoryCache.put(paramKey, paramBoolean);
+                return paramBoolean;
+            }
+        }
+        return paramBoolean;
+    }
+
+    public void putJSON(String paramKey, JSONObject jsonObject) {
+        memoryCacheJson.put(paramKey, jsonObject);
+        asyncPut(paramKey, jsonObject.toString());
+    }
+
+
+    public JSONObject getJson(String str) {
+
+        if(TextUtils.isEmpty(str)) return null;
+
+        if (this.memoryCacheJson.containsKey(str)) {
+            return this.memoryCacheJson.get(str);
+        }
+
+        String string = getString(str, "");
+        if(TextUtils.isEmpty(string)) return null;
+
+        try {
+
+            JSONObject jsonObject = new JSONObject(string);
+            this.memoryCacheJson.put(str, jsonObject);
+            return jsonObject;
+        } catch (JSONException e) {
+            return null;
+        }
+    }
+
+
     public Map<String, ?> getAll() {
         return preferences.getAll();
     }
@@ -182,52 +202,33 @@ public class CachePreference {
     private class PutRunnable implements Runnable {
         private String key;
         private Object value;
-        private JSONObject jsonObject;
-        private boolean isJson = false;
 
         public PutRunnable(String key, Object value) {
             this.key = key;
             this.value = value;
         }
 
-        public PutRunnable(JSONObject jsonObject) {
-            this.jsonObject = jsonObject;
-            this.isJson = true;
-        }
-
         @SuppressLint("ApplySharedPref")
         @Override
         public void run() {
             SharedPreferences.Editor localEditor = preferences.edit();
-            if (this.isJson) {
-                Iterator<String> sIterator = jsonObject.keys();
-                while (sIterator.hasNext()) {
-                    String key = sIterator.next();
-                    Object value = jsonObject.opt(key);
-                    putValue(key, value, localEditor);
-                }
-            } else {
-                putValue(this.key, this.value, localEditor);
-            }
-            localEditor.commit();
-        }
-
-        private void putValue(String key, Object value, SharedPreferences.Editor localEditor) {
-            if ((value instanceof String)) {
-                localEditor.putString(key, (String) value);
-            } else if ((value instanceof Long)) {
-                localEditor.putLong(key, (Long) value);
-            } else if ((value instanceof Integer)) {
-                localEditor.putInt(key, ((Integer) value));
-            } else if ((value instanceof Boolean)) {
-                localEditor.putBoolean(key, ((Boolean) value));
-            } else if ((value instanceof Float)) {
-                localEditor.putFloat(key, ((Float) value));
-            } else if ((value instanceof Double)) {
-                localEditor.putLong(key, Double.doubleToRawLongBits((Double) value));
+            Object obj = this.value;
+            if ((obj instanceof String)) {
+                localEditor.putString(key, (String) obj);
+            } else if ((obj instanceof Long)) {
+                localEditor.putLong(key, (Long) obj);
+            } else if ((obj instanceof Integer)) {
+                localEditor.putInt(key, ((Integer) obj));
+            } else if ((obj instanceof Boolean)) {
+                localEditor.putBoolean(key, ((Boolean) obj));
+            } else if ((obj instanceof Float)) {
+                localEditor.putFloat(key, ((Float) obj));
+            } else if ((obj instanceof Double)) {
+                localEditor.putLong(key, Double.doubleToRawLongBits((Double) obj));
             } else {
                 LogUtil.e("数据异常，无法存入sp");
             }
+            localEditor.commit();
         }
     }
 }
