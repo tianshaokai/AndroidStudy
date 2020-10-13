@@ -32,10 +32,24 @@ android {
     }
 }
 
+repositories {//添加一个本地仓库
+    flatDir {
+        dirs 'libs'
+    }
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation files('libs/BaiduLBS_Android.jar')
-    implementation files('libs/component_common_sdk_1.0.0.jar')
-    implementation files('libs/IndoorscapeAlbumPlugin.jar')
+
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+
+    implementation(name: 'BaiduLBS_android', ext: 'aar')
+    implementation(name: 'NaviTts', ext: 'aar')
+    implementation(name: 'onsdk_all', ext: 'aar')
+
+    implementation files('libs/intellij_annotations.jar')
+    implementation files('libs/javapoet-1.9.0.jar')
+
+
 }

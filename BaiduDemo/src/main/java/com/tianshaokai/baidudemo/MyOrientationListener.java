@@ -6,6 +6,9 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
+/**
+ * 罗盘 定位监听器
+ */
 public class MyOrientationListener implements SensorEventListener {
 
 
@@ -20,23 +23,19 @@ public class MyOrientationListener implements SensorEventListener {
     }
 
     public void start() {
-        mSensorManager = (SensorManager) mContext
-                .getSystemService(Context.SENSOR_SERVICE);
-        if (mSensorManager != null) {
-            //获得方向传感器
-            mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
-        }
+        mSensorManager = (SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE);
+        if (mSensorManager == null) return;
+        //获得方向传感器
+        mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
         //判断是否有方向传感器
-        if (mSensor != null) {
-            //注册监听器
-            mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_UI);
-
-        }
+        if (mSensor == null) return;
+        //注册监听器
+        mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_UI);
     }
 
     public void stop() {
+        if(mSensorManager == null || mSensor == null) return;
         mSensorManager.unregisterListener(this);
-
     }
 
     //方向改变
