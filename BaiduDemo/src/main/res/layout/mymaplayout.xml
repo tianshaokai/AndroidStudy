@@ -6,24 +6,24 @@
     android:orientation="vertical"
     android:weightSum="1.0">
 
-    <com.baidu.mapframework.widget.EmptyTopLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+<!--    <com.baidu.mapframework.widget.EmptyTopLayout-->
+<!--        android:layout_width="fill_parent"-->
+<!--        android:layout_height="wrap_content" />-->
 
     <include
-        android:id="@id/searchbox_kuang_up"
+        android:id="@+id/searchbox_kuang_up"
         layout="@layout/aihome_poi_first_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
 
     <FrameLayout
-        android:id="@id/new_vw_map"
+        android:id="@+id/new_vw_map"
         android:layout_width="fill_parent"
         android:layout_height="0.0dip"
         android:layout_weight="1.0" />
 
     <LinearLayout
-        android:id="@id/inner"
+        android:id="@+id/inner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="-4.0dip"
@@ -31,13 +31,13 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@id/inner_card"
+            android:id="@+id/inner_card"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@id/fl_top_empty"
+                android:id="@+id/fl_top_empty"
                 android:layout_width="fill_parent"
                 android:layout_height="80.0dip"
                 android:layout_centerVertical="true"
@@ -48,13 +48,13 @@
                 android:paddingRight="16.0dip">
 
                 <LinearLayout
-                    android:id="@id/jia"
+                    android:id="@+id/jia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@id/l1c1"
+                        android:id="@+id/l1c1"
                         style="@style/kh"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@id/ll_mymap_place_layout"
+                    android:id="@+id/ll_mymap_place_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3.0dip"
@@ -73,7 +73,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@id/tv_map_distance"
+                        android:id="@+id/tv_map_distance"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -89,7 +89,7 @@
                         android:textSize="14.0dip" />
 
                     <TextView
-                        android:id="@id/mymap_address"
+                        android:id="@+id/mymap_address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10.0dip"
@@ -102,7 +102,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@id/ll_mymap_place_hint"
+                    android:id="@+id/ll_mymap_place_hint"
                     android:layout_width="fill_parent"
                     android:layout_height="20.0dip"
                     android:layout_gravity="center_vertical"
@@ -113,7 +113,7 @@
                     android:visibility="gone">
 
                     <TextView
-                        android:id="@id/tv_hint_text"
+                        android:id="@+id/tv_hint_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -127,7 +127,7 @@
             </LinearLayout>
 
             <View
-                android:id="@id/divide_buttons"
+                android:id="@+id/divide_buttons"
                 android:layout_width="fill_parent"
                 android:layout_height="1.0px"
                 android:layout_marginLeft="12.0dip"
@@ -137,7 +137,7 @@
         </LinearLayout>
 
         <View
-            android:id="@id/bottom_buttons_bar_line"
+            android:id="@+id/bottom_buttons_bar_line"
             android:layout_width="fill_parent"
             android:layout_height="0.5dip"
             android:layout_marginLeft="8.0dip"
@@ -145,7 +145,7 @@
             android:background="#ffe7e7ee" />
 
         <LinearLayout
-            android:id="@id/bottom_bar"
+            android:id="@+id/bottom_bar"
             android:layout_width="fill_parent"
             android:layout_height="@dimen/aihome_poidetail_bottombar_height_real"
             android:layout_alignParentBottom="true"
@@ -153,7 +153,7 @@
             android:orientation="horizontal">
 
             <RelativeLayout
-                android:id="@id/rl_third_btn"
+                android:id="@+id/rl_third_btn"
                 android:layout_width="0.0dip"
                 android:layout_height="fill_parent"
                 android:layout_weight="1.0"
@@ -167,14 +167,14 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@id/iv_third_btn"
+                        android:id="@+id/iv_third_btn"
                         android:layout_width="18.0dip"
                         android:layout_height="18.0dip"
                         android:layout_gravity="center_horizontal"
                         android:src="@drawable/icon_gaizheng" />
 
                     <TextView
-                        android:id="@id/tv_third_btn"
+                        android:id="@+id/tv_third_btn"
                         android:layout_width="40.0dip"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -187,7 +187,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@id/rl_fav"
+                android:id="@+id/rl_fav"
                 android:layout_width="0.0dip"
                 android:layout_height="fill_parent"
                 android:layout_weight="1.0"
@@ -196,28 +196,28 @@
                 android:gravity="center|left">
 
                 <LinearLayout
-                    android:id="@id/fake_fav_layout"
+                    android:id="@+id/fake_fav_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:clipChildren="false"
                     android:orientation="vertical">
 
-                    <com.like.LikeButton
-                        android:id="@id/fake_fav_image"
-                        android:layout_width="18.0dip"
-                        android:layout_height="18.0dip"
-                        android:layout_gravity="center_horizontal"
-                        android:clipChildren="false"
-                        app:circle_end_color="#ffffb900"
-                        app:circle_start_color="#ffffb900"
-                        app:dots_primary_color="#ffffb900"
-                        app:dots_secondary_color="#ffffb900"
-                        app:like_drawable="@drawable/aihome_poidetail_bottombar_fav_yes"
-                        app:unlike_drawable="@drawable/aihome_poidetail_bottombar_fave_no" />
+<!--                    <com.like.LikeButton-->
+<!--                        android:id="@id/fake_fav_image"-->
+<!--                        android:layout_width="18.0dip"-->
+<!--                        android:layout_height="18.0dip"-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:clipChildren="false"-->
+<!--                        app:circle_end_color="#ffffb900"-->
+<!--                        app:circle_start_color="#ffffb900"-->
+<!--                        app:dots_primary_color="#ffffb900"-->
+<!--                        app:dots_secondary_color="#ffffb900"-->
+<!--                        app:like_drawable="@drawable/aihome_poidetail_bottombar_fav_yes"-->
+<!--                        app:unlike_drawable="@drawable/aihome_poidetail_bottombar_fave_no" />-->
 
                     <TextView
-                        android:id="@id/fake_fav_text"
+                        android:id="@+id/fake_fav_text"
                         android:layout_width="40.0dip"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
@@ -230,7 +230,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@id/rl_search_around"
+                android:id="@+id/rl_search_around"
                 android:layout_width="0.0dip"
                 android:layout_height="fill_parent"
                 android:layout_weight="1.0"
@@ -262,14 +262,14 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@id/rl_to_navi"
+                android:id="@+id/rl_to_navi"
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:layout_marginRight="10.0dip"
                 android:clickable="true">
 
                 <LinearLayout
-                    android:id="@id/rl_to_navi_inner"
+                    android:id="@+id/rl_to_navi_inner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -303,7 +303,7 @@
                 android:clickable="true">
 
                 <LinearLayout
-                    android:id="@id/rl_route_btn"
+                    android:id="@+id/rl_route_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -311,14 +311,14 @@
                     android:gravity="center">
 
                     <ImageView
-                        android:id="@id/iv_route_icon"
+                        android:id="@+id/iv_route_icon"
                         android:layout_width="16.0dip"
                         android:layout_height="16.0dip"
                         android:layout_gravity="center_vertical"
                         android:src="@drawable/locationbar_route_btn" />
 
                     <TextView
-                        android:id="@id/iv_route_text"
+                        android:id="@+id/iv_route_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"

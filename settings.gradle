@@ -2,8 +2,6 @@ include ':app'
 
 include ':common'
 
-//include ':canvas'
-
 include ':widgetView'
 
 include ':uiapp'

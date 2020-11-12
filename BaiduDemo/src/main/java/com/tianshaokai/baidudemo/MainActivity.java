@@ -9,6 +9,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
@@ -18,12 +19,21 @@ import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.MapBaseIndoorMapInfo;
+import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
+import com.baidu.mapapi.search.core.PoiInfo;
+import com.baidu.mapapi.search.geocode.GeoCodeResult;
+import com.baidu.mapapi.search.geocode.GeoCoder;
+import com.baidu.mapapi.search.geocode.OnGetGeoCoderResultListener;
+import com.baidu.mapapi.search.geocode.ReverseGeoCodeOption;
+import com.baidu.mapapi.search.geocode.ReverseGeoCodeResult;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,6 +62,11 @@ public class MainActivity extends AppCompatActivity {
     private FloorView floorView;
 
     private BitmapDescriptor bitmapLocationIcon;
+
+    // 默认逆地理编码半径范围
+    private static final int sDefaultRGCRadius = 100;
+
+    private GeoCoder mGeoCoder = null;
 
     private float mCurrentX;
 
@@ -98,6 +113,94 @@ public class MainActivity extends AppCompatActivity {
         initLocation();
 
 
+        mBaiduMap.setOnMapStatusChangeListener(new BaiduMap.OnMapStatusChangeListener() {
+            @Override
+            public void onMapStatusChangeStart(MapStatus mapStatus) {
+
+            }
+
+            @Override
+            public void onMapStatusChangeStart(MapStatus mapStatus, int i) {
+
+            }
+
+            @Override
+            public void onMapStatusChange(MapStatus mapStatus) {
+
+            }
+
+            @Override
+            public void onMapStatusChangeFinish(MapStatus mapStatus) {
+
+
+                LatLng newCenter = mapStatus.target;
+
+
+                Toast.makeText(MainActivity.this, newCenter.longitude + " " + newCenter.latitude, Toast.LENGTH_LONG).show();
+
+                // 如果是点击poi item导致的地图状态更新，则不用做后面的逆地理请求，
+//                if (mStatusChangeByItemClick) {
+//                    if (!Utils.isLatlngEqual(mCenter, newCenter)) {
+//                        mCenter = newCenter;
+//                    }
+//                    mStatusChangeByItemClick = false;
+//                    return;
+//                }
+//
+//                if (!Utils.isLatlngEqual(mCenter, newCenter)) {
+//                    mCenter = newCenter;
+                    reverseRequest(newCenter);
+//                }
+
+            }
+        });
+
+        mBaiduMap.setOnMapLoadedCallback(new BaiduMap.OnMapLoadedCallback() {
+            @Override
+            public void onMapLoaded() {
+
+            }
+        });
+
+
+    }
+
+
+    /**
+     * 逆地理编码请求
+     *
+     * @param latLng
+     */
+    private void reverseRequest(LatLng latLng) {
+        if (null == latLng) {
+            return;
+        }
+
+        ReverseGeoCodeOption reverseGeoCodeOption = new ReverseGeoCodeOption().location(latLng)
+                .newVersion(1) // 建议请求新版数据
+                .radius(sDefaultRGCRadius);
+
+        if (null == mGeoCoder) {
+            mGeoCoder = GeoCoder.newInstance();
+        }
+
+        mGeoCoder.setOnGetGeoCodeResultListener(new OnGetGeoCoderResultListener() {
+            @Override
+            public void onGetGeoCodeResult(GeoCodeResult geoCodeResult) {
+
+            }
+
+            @Override
+            public void onGetReverseGeoCodeResult(ReverseGeoCodeResult reverseGeoCodeResult) {
+                List<PoiInfo> poiInfos = reverseGeoCodeResult.getPoiList();
+                if(poiInfos == null || poiInfos.isEmpty()) return;
+                for (int i = 0; i < poiInfos.size(); i++) {
+                    Log.d("MainActivity", "" + poiInfos.get(i).address + poiInfos.get(i).name + poiInfos.get(i).province + poiInfos.get(i).area );
+                }
+                Toast.makeText(MainActivity.this, poiInfos.size() + " ", Toast.LENGTH_LONG).show();
+            }
+        });
+        mGeoCoder.reverseGeoCode(reverseGeoCodeOption);
     }
 
     /**

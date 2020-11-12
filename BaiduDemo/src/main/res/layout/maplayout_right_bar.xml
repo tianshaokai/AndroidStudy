@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/right_bar"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="3.5dip"
+    android:layout_marginRight="0.5dip"
+    android:background="@drawable/maplayout_bg"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_layer"
+        android:layout_width="@dimen/maplayout_group_icon_width"
+        android:layout_height="@dimen/maplayout_group_icon_height"
+        android:contentDescription="@string/acb_main_map_layers"
+        android:gravity="center"
+        android:paddingTop="@dimen/maplayout_group_icon_margin_top"
+        android:paddingBottom="@dimen/maplayout_group_icon_margin_bottom"
+        android:tag="voiceTag_settingView">
+
+        <ImageView
+            android:id="@+id/map_layers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:focusable="false"
+            android:src="@drawable/bmskin_main_icon_maplayer_new1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:focusable="false"
+            android:includeFontPadding="false"
+            android:text="图层"
+            android:textColor="#ff333333"
+            android:textSize="10.0dip" />
+
+        <View
+            android:id="@+id/iv_layer_new"
+            android:layout_width="6.0dip"
+            android:layout_height="6.0dip"
+            android:layout_alignTop="@id/map_layers"
+            android:layout_alignRight="@id/map_layers"
+            android:background="@drawable/aihome_red_point"
+            android:focusable="false"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+<!--    <TextView-->
+<!--        android:id="@+id/earth_3d"-->
+<!--        android:layout_width="@dimen/maplayout_group_icon_width"-->
+<!--        android:layout_height="@dimen/maplayout_group_icon_height"-->
+<!--        android:contentDescription="@string/acb_earth_3d"-->
+<!--        android:drawableTop="@drawable/bmskin_main_map_icon_3d_earth"-->
+<!--        android:focusable="false"-->
+<!--        android:gravity="bottom|center"-->
+<!--        android:includeFontPadding="false"-->
+<!--        android:paddingTop="@dimen/maplayout_group_icon_margin_top"-->
+<!--        android:paddingBottom="@dimen/maplayout_group_icon_margin_bottom"-->
+<!--        android:text="3D地球"-->
+<!--        android:textColor="#ff333333"-->
+<!--        android:textSize="10.0dip"-->
+<!--        android:visibility="gone" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/global_travel"-->
+<!--        android:layout_width="@dimen/maplayout_group_icon_width"-->
+<!--        android:layout_height="@dimen/maplayout_group_icon_height"-->
+<!--        android:contentDescription="@string/acb_main_travel"-->
+<!--        android:drawableTop="@drawable/bmskin_main_map_icon_global_travel"-->
+<!--        android:focusable="false"-->
+<!--        android:gravity="bottom|center"-->
+<!--        android:includeFontPadding="false"-->
+<!--        android:paddingTop="@dimen/maplayout_group_icon_margin_top"-->
+<!--        android:paddingBottom="@dimen/maplayout_group_icon_margin_bottom"-->
+<!--        android:text="旅游"-->
+<!--        android:textColor="#ff333333"-->
+<!--        android:textSize="10.0dip"-->
+<!--        android:visibility="gone" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/map_popular_area"-->
+<!--        android:layout_width="@dimen/maplayout_group_icon_width"-->
+<!--        android:layout_height="@dimen/maplayout_group_icon_height"-->
+<!--        android:contentDescription="@string/acb_main_explore"-->
+<!--        android:drawableTop="@drawable/main_map_icon_popular"-->
+<!--        android:focusable="false"-->
+<!--        android:gravity="bottom|center"-->
+<!--        android:includeFontPadding="false"-->
+<!--        android:paddingTop="@dimen/maplayout_group_icon_margin_top"-->
+<!--        android:paddingBottom="@dimen/maplayout_group_icon_margin_bottom"-->
+<!--        android:text="必去"-->
+<!--        android:textColor="#ff333333"-->
+<!--        android:textSize="10.0dip"-->
+<!--        android:visibility="gone" />-->
+
+<!--    <RelativeLayout-->
+<!--        android:id="@+id/ugc_report_btn"-->
+<!--        android:layout_width="@dimen/maplayout_group_icon_width"-->
+<!--        android:layout_height="@dimen/maplayout_group_icon_height"-->
+<!--        android:gravity="center"-->
+<!--        android:paddingTop="@dimen/maplayout_group_icon_margin_top"-->
+<!--        android:paddingBottom="@dimen/maplayout_group_icon_margin_bottom"-->
+<!--        android:visibility="gone">-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/ugc_report_Iv"-->
+<!--            android:layout_width="26.0dip"-->
+<!--            android:layout_height="23.0dip"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:scaleType="fitXY"-->
+<!--            android:src="@drawable/icon_error_report" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="fill_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:gravity="center"-->
+<!--            android:includeFontPadding="false"-->
+<!--            android:text="上报"-->
+<!--            android:textColor="#ff333333"-->
+<!--            android:textSize="10.0dip" />-->
+<!--    </RelativeLayout>-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/client_ugc_report_btn"-->
+<!--        android:layout_width="@dimen/maplayout_group_icon_width"-->
+<!--        android:layout_height="@dimen/maplayout_group_icon_height"-->
+<!--        android:drawableTop="@drawable/icon_error_report"-->
+<!--        android:focusable="false"-->
+<!--        android:gravity="bottom|center"-->
+<!--        android:includeFontPadding="false"-->
+<!--        android:paddingTop="@dimen/maplayout_group_icon_margin_top"-->
+<!--        android:paddingBottom="@dimen/maplayout_group_icon_margin_bottom"-->
+<!--        android:text="上报"-->
+<!--        android:textColor="#ff333333"-->
+<!--        android:textSize="10.0dip"-->
+<!--        android:visibility="gone" />-->
+
+<!--    <RelativeLayout-->
+<!--        android:id="@+id/rent_car"-->
+<!--        android:layout_width="@dimen/maplayout_group_icon_width"-->
+<!--        android:layout_height="@dimen/maplayout_group_icon_height"-->
+<!--        android:gravity="center"-->
+<!--        android:paddingTop="@dimen/maplayout_group_icon_margin_top"-->
+<!--        android:paddingBottom="@dimen/maplayout_group_icon_margin_bottom"-->
+<!--        android:visibility="gone">-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/rent_car_icon"-->
+<!--            android:layout_width="26.0dip"-->
+<!--            android:layout_height="23.0dip"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:scaleType="fitXY" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="fill_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:gravity="center"-->
+<!--            android:includeFontPadding="false"-->
+<!--            android:text="打车"-->
+<!--            android:textColor="#ff333333"-->
+<!--            android:textSize="10.0dip" />-->
+<!--    </RelativeLayout>-->
+
+<!--    <RelativeLayout-->
+<!--        android:id="@+id/fast_navi"-->
+<!--        android:layout_width="@dimen/maplayout_group_icon_width"-->
+<!--        android:layout_height="@dimen/maplayout_group_icon_height"-->
+<!--        android:gravity="center_horizontal"-->
+<!--        android:paddingTop="@dimen/maplayout_group_icon_margin_top"-->
+<!--        android:paddingBottom="@dimen/maplayout_group_icon_margin_bottom"-->
+<!--        android:tag="fast_navi"-->
+<!--        android:visibility="gone">-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/iv_fast_navi"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:scaleType="fitXY"-->
+<!--            android:src="@drawable/fast_navi_icon" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/tv_fast_navi"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:includeFontPadding="false"-->
+<!--            android:text="极速导航"-->
+<!--            android:textColor="#ff333333"-->
+<!--            android:textSize="8.0dip" />-->
+
+<!--        <View-->
+<!--            android:id="@+id/fast_navi_red_point_global"-->
+<!--            android:layout_width="6.0dip"-->
+<!--            android:layout_height="6.0dip"-->
+<!--            android:layout_alignTop="@id/iv_fast_navi"-->
+<!--            android:layout_alignRight="@id/iv_fast_navi"-->
+<!--            android:background="@drawable/aihome_red_point"-->
+<!--            android:visibility="gone" />-->
+<!--    </RelativeLayout>-->
+
+<!--    <RelativeLayout-->
+<!--        android:id="@+id/rent_car_global"-->
+<!--        android:layout_width="@dimen/maplayout_group_icon_width"-->
+<!--        android:layout_height="@dimen/maplayout_group_icon_height"-->
+<!--        android:gravity="center"-->
+<!--        android:paddingTop="@dimen/maplayout_group_icon_margin_top"-->
+<!--        android:paddingBottom="@dimen/maplayout_group_icon_margin_bottom"-->
+<!--        android:visibility="gone">-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/rent_car_icon_global"-->
+<!--            android:layout_width="26.0dip"-->
+<!--            android:layout_height="23.0dip"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:scaleType="fitXY"-->
+<!--            android:src="@drawable/map_icon_rentcar" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="fill_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:gravity="center"-->
+<!--            android:includeFontPadding="false"-->
+<!--            android:text="打车"-->
+<!--            android:textColor="#ff333333"-->
+<!--            android:textSize="10.0dip" />-->
+
+<!--        <View-->
+<!--            android:id="@+id/rent_car_red_point_global"-->
+<!--            android:layout_width="6.0dip"-->
+<!--            android:layout_height="6.0dip"-->
+<!--            android:layout_alignTop="@id/rent_car_icon_global"-->
+<!--            android:layout_alignRight="@id/rent_car_icon_global"-->
+<!--            android:background="@drawable/aihome_red_point"-->
+<!--            android:visibility="gone" />-->
+<!--    </RelativeLayout>-->
+
+<!--    <RelativeLayout-->
+<!--        android:id="@+id/pechoin_entrance"-->
+<!--        android:layout_width="@dimen/maplayout_group_icon_width"-->
+<!--        android:layout_height="@dimen/maplayout_group_icon_height"-->
+<!--        android:gravity="center_horizontal"-->
+<!--        android:paddingTop="@dimen/maplayout_group_icon_margin_top"-->
+<!--        android:paddingBottom="@dimen/maplayout_group_icon_margin_bottom"-->
+<!--        android:tag="voice_entrance"-->
+<!--        android:visibility="gone">-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/iv_pechoin_entrance"-->
+<!--            android:layout_width="26.0dip"-->
+<!--            android:layout_height="23.0dip"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:scaleType="fitXY"-->
+<!--            android:src="@drawable/voice_package0" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:includeFontPadding="false"-->
+<!--            android:text="语音包"-->
+<!--            android:textColor="#ff333333"-->
+<!--            android:textSize="9.0dip" />-->
+<!--    </RelativeLayout>-->
+
+<!--    <RelativeLayout-->
+<!--        android:id="@+id/dynamic_entrance"-->
+<!--        android:layout_width="@dimen/maplayout_group_icon_width"-->
+<!--        android:layout_height="@dimen/maplayout_group_icon_height"-->
+<!--        android:gravity="center_horizontal"-->
+<!--        android:paddingTop="@dimen/maplayout_group_icon_margin_top"-->
+<!--        android:paddingBottom="@dimen/maplayout_group_icon_margin_bottom"-->
+<!--        android:tag="dynamic_entrance"-->
+<!--        android:visibility="gone">-->
+
+<!--        <com.baidu.mapframework.widget.AsyncImageView-->
+<!--            android:id="@id/iv_dynamic_entrance"-->
+<!--            android:layout_width="26.0dip"-->
+<!--            android:layout_height="23.0dip"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:scaleType="fitXY"-->
+<!--            app:compress="false"-->
+<!--            app:loading="false"-->
+<!--            app:placeholder="@drawable/default_map_icon" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/text_dynamic_entrance"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:ellipsize="middle"-->
+<!--            android:includeFontPadding="false"-->
+<!--            android:maxLength="4"-->
+<!--            android:singleLine="true"-->
+<!--            android:text=""-->
+<!--            android:textColor="#ff333333"-->
+<!--            android:textSize="10.0dip" />-->
+<!--    </RelativeLayout>-->
+</LinearLayout>
