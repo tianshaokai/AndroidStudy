@@ -3,21 +3,28 @@ package com.tianshaokai.study;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import com.tianshaokai.study.record.AudioRecordActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    TextView tvFileList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        tvFileList = findViewById(R.id.tvFileList);
+        tvFileList.setOnClickListener(this);
 
-        Intent intent = new Intent(this, AudioRecordActivity.class);
-        startActivity(intent);
 
-        finish();
+//        Intent intent = new Intent(this, AudioRecordActivity.class);
+//        startActivity(intent);
+//
+//        finish();
 
 
 //        Preferences preferences = Preferences.build(this);
@@ -33,5 +40,18 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        }
 //        text.setText(stringBuffer.toString());
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        Intent intent = new Intent();
+        switch (id) {
+            case R.id.tvFileList:
+                intent.setClass(this,FileListActivity.class);
+                break;
+        }
+
+        startActivity(intent);
     }
 }
