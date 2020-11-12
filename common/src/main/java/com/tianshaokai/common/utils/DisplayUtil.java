@@ -2,7 +2,6 @@ package com.tianshaokai.common.utils;
 
 import android.content.Context;
 import android.util.DisplayMetrics;
-import android.view.WindowManager;
 
 public class DisplayUtil {
 
@@ -11,10 +10,8 @@ public class DisplayUtil {
      * @return DisplayMetrics对象
      */
     public static DisplayMetrics getDisplayMetrics(Context context) {
-        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics metrics = new DisplayMetrics();
-        windowManager.getDefaultDisplay().getMetrics(metrics);
-        return metrics;
+        if(context == null) return null;
+        return context.getResources().getDisplayMetrics();
     }
 
     /**
@@ -24,6 +21,7 @@ public class DisplayUtil {
      * @return 宽
      */
     public static int getScreenWidth(Context context) {
+        if(context == null) return 0;
         DisplayMetrics metrics = getDisplayMetrics(context);
         return metrics.widthPixels;
     }
@@ -35,6 +33,7 @@ public class DisplayUtil {
      * @return 高
      */
     public static int getScreenHeight(Context context) {
+        if(context == null) return 0;
         DisplayMetrics metrics = getDisplayMetrics(context);
         return metrics.heightPixels;
     }

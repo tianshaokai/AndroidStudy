@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".record.AudioRecordActivity"></activity>
-        <activity android:name=".ScreenActivity">
+        <activity android:name=".FileListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

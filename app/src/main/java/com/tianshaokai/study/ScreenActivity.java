@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.widget.TextView;
 
+import com.tianshaokai.common.utils.DisplayUtil;
+
 import java.text.MessageFormat;
 
 public class ScreenActivity extends AppCompatActivity {
@@ -31,7 +33,7 @@ public class ScreenActivity extends AppCompatActivity {
         text6 = findViewById(R.id.text6);
         text7 = findViewById(R.id.text7);
 
-        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        DisplayMetrics metrics = DisplayUtil.getDisplayMetrics(this);
 
         text1.setText(MessageFormat.format("densityDpi: {0}",    metrics.densityDpi));
         text2.setText(MessageFormat.format("density: {0}",       metrics.density));

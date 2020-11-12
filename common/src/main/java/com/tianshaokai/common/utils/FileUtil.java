@@ -5,10 +5,12 @@ import android.graphics.Bitmap;
 import android.os.Environment;
 import android.util.Log;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 
 public class FileUtil {
@@ -129,5 +131,21 @@ public class FileUtil {
                 file.delete();
             }
         }
+    }
+
+    public static String getFileContent(String path) {
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(path));
+            StringBuilder stringBuilder = new StringBuilder();
+            String str;
+            while ((str = in.readLine()) != null) {
+                stringBuilder.append(str);
+            }
+            System.out.println(stringBuilder.toString());
+
+            return stringBuilder.toString();
+        } catch (IOException e) {
+        }
+        return "";
     }
 }
