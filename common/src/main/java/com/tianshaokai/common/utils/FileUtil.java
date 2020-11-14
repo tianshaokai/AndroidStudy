@@ -2,15 +2,14 @@ package com.tianshaokai.common.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.os.Environment;
-import android.util.Log;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class FileUtil {
@@ -78,7 +77,7 @@ public class FileUtil {
                 size = fis.available();
             }
         } catch (IOException e) {
-            Log.e("getFileSize", "获取文件大小异常", e);
+            LogUtil.e("getFileSize", "获取文件大小异常", e);
         } finally {
             if (fis != null) {
                 try {
@@ -93,15 +92,15 @@ public class FileUtil {
 
     /**
      * 获取指定文件夹
-     * @param f
+     * @param fileDir
      * @return
      */
-    private static long getFileSizes(File f) {
+    private static long getFileSizes(File fileDir) {
         long size = 0;
-        if (f == null) {
+        if (fileDir == null) {
             return size;
         }
-        File[] fileArray = f.listFiles();
+        File[] fileArray = fileDir.listFiles();
         if (fileArray == null || fileArray.length == 0) {
             return size;
         }
@@ -118,34 +117,124 @@ public class FileUtil {
         return size;
     }
 
-    public static void deleteFile(File folder) {
-        if (!folder.exists()) {
-            return;
+    public static boolean deleteDir(String dirName) {
+        if (!dirName.endsWith(File.separator)) {//dirName不以分隔符结尾则自动添加分隔符
+            dirName = dirName + File.separator;
         }
+        File fileDir = new File(dirName);//根据指定的文件名创建File对象
+        if (!fileDir.exists() || (!fileDir.isDirectory())) { //目录不存在或者
+            LogUtil.e(TAG, "目录删除失败" + dirName + "目录不存在！");
+            return false;
+        }
+        File[] fileArrays = fileDir.listFiles();//列出源文件下所有文件，包括子目录
+        if (fileArrays == null || fileArrays.length == 0) {
+            LogUtil.e(TAG, "目录" + dirName + " 获取文件为空");
+            return false;
+        }
+        for (File file : fileArrays) {//将源文件下的所有文件逐个删除
+            deleteAnyone(file.getAbsolutePath());
+        }
+        if (fileDir.delete()) {//删除当前目录
+            LogUtil.e(TAG, "目录" + dirName + "删除成功！");
+        }
+        return true;
+    }
 
-        File[] fileArray = folder.listFiles();
-        for (File file : fileArray) {
-            if (file.isDirectory()) {
-                deleteFile(file);
-            } else {
-                file.delete();
+    /**
+     * 判断指定的文件或文件夹删除是否成功
+     * @param FileName 文件或文件夹的路径
+     * @return true or false 成功返回true，失败返回false
+     */
+    public static boolean deleteAnyone(String FileName) {
+        File file = new File(FileName);//根据指定的文件名创建File对象
+        if (!file.exists()) {  //要删除的文件不存在
+            LogUtil.e(TAG, "文件" + FileName + "不存在，删除失败！");
+            return false;
+        } else { //要删除的文件存在
+            if (file.isFile()) { //如果目标文件是文件
+                return deleteFile(FileName);
+            } else {  //如果目标文件是目录
+                return deleteDir(FileName);
             }
+        }
+    }
+
+    public static boolean deleteFile(String fileName) {
+        File file = new File(fileName);//根据指定的文件名创建File对象
+        if (file.exists() && file.isFile()) { //要删除的文件存在且是文件
+            boolean isDelete = file.delete();
+            if (isDelete) {
+                LogUtil.d(TAG, "文件" + fileName + "删除成功！");
+            } else {
+                LogUtil.e(TAG, "文件" + fileName + "删除失败！");
+            }
+            return isDelete;
+        } else {
+            LogUtil.e(TAG, "文件" + fileName + "不存在，删除失败！");
+            return false;
         }
     }
 
     public static String getFileContent(String path) {
+        FileReader fileReader = null;
+        BufferedReader bufferReader = null;
         try {
-            BufferedReader in = new BufferedReader(new FileReader(path));
+            fileReader = new FileReader(path);
+            bufferReader = new BufferedReader(fileReader);
             StringBuilder stringBuilder = new StringBuilder();
             String str;
-            while ((str = in.readLine()) != null) {
+            while ((str = bufferReader.readLine()) != null) {
                 stringBuilder.append(str);
             }
-            System.out.println(stringBuilder.toString());
-
             return stringBuilder.toString();
         } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (fileReader != null) {
+                    fileReader.close();
+                }
+                if (bufferReader != null) {
+                    bufferReader.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return "";
     }
+
+    public static void writeFile(String fileName, String filePath, String content) {
+        writeFile(fileName, filePath, content, false);
+    }
+
+    public static void writeFile(String fileName, String filePath, String content, boolean isAppend) {
+        File sf = new File(filePath);
+        if (!sf.exists()) {
+            sf.mkdirs();
+        }
+        FileWriter fileWriter = null;
+        BufferedWriter bufferedWriter = null;
+        try {
+            fileWriter = new FileWriter(filePath + fileName, isAppend);
+            bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(content + "\n");
+            bufferedWriter.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (bufferedWriter != null) {
+                    bufferedWriter.close();
+                }
+                if (fileWriter != null) {
+                    fileWriter.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
 }

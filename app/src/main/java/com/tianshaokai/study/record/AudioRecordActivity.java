@@ -93,7 +93,7 @@ public class AudioRecordActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String filePath = SDUtils.getPackageAudioPath(AudioRecordActivity.this);
-                FileUtil.deleteFile(new File(filePath));
+                FileUtil.deleteFile(filePath);
                 audioRecordListAdapter.deleteFile();
             }
         });

@@ -29,7 +29,7 @@ public class ClipboardUtil {
         if(context == null) return "";
         // 得到剪贴板管理器
         ClipboardManager cmb = (ClipboardManager)context.getApplicationContext().getSystemService(Context.CLIPBOARD_SERVICE);
-        if (cmb.hasPrimaryClip()) {
+        if (cmb.getPrimaryClip() != null && cmb.hasPrimaryClip()) {
             return cmb.getPrimaryClip().getItemAt(0).getText().toString();
         }
         return "";
