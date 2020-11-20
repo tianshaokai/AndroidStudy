@@ -18,6 +18,7 @@ import com.tianshaokai.common.utils.DateUtil;
 import com.tianshaokai.common.utils.FileUtil;
 import com.tianshaokai.common.utils.SDUtils;
 import com.tianshaokai.study.R;
+import com.tianshaokai.study.adapter.AudioRecordListAdapter;
 
 import java.io.File;
 import java.io.FileFilter;

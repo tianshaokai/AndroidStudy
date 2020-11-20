@@ -3,55 +3,51 @@ package com.tianshaokai.study;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.TextView;
 
+import com.tianshaokai.study.adapter.MyAdapter;
+import com.tianshaokai.study.entity.MyFunction;
+import com.tianshaokai.study.interfaces.OnItemClickListener;
 import com.tianshaokai.study.record.AudioRecordActivity;
+import com.tianshaokai.study.record.VideoRecordActivity;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+import java.util.ArrayList;
+import java.util.List;
 
-    TextView tvFileList;
+public class MainActivity extends AppCompatActivity {
+
+    RecyclerView recyclerView;
+    MyAdapter myAdapter;
+
+    private List<MyFunction> myFunctionList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tvFileList = findViewById(R.id.tvFileList);
-        tvFileList.setOnClickListener(this);
+        recyclerView = findViewById(R.id.recyclerView);
 
+        myFunctionList.add(new MyFunction("文件列表",   FileListActivity.class));
+        myFunctionList.add(new MyFunction("屏幕密度",   ScreenActivity.class));
+        myFunctionList.add(new MyFunction("录音",      AudioRecordActivity.class));
+        myFunctionList.add(new MyFunction("录像",      VideoRecordActivity.class));
+        myFunctionList.add(new MyFunction("本地存储",   CacheActivity.class));
 
-//        Intent intent = new Intent(this, AudioRecordActivity.class);
-//        startActivity(intent);
-//
-//        finish();
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        myAdapter = new MyAdapter(myFunctionList);
 
+        myAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position, MyFunction myFunction) {
+                Intent intent = new Intent(MainActivity.this, myFunction.getClazz());
+                startActivity(intent);
+            }
+        });
 
-//        Preferences preferences = Preferences.build(this);
-//
-//        StringBuilder stringBuffer = new StringBuilder();
-//
-//        Map<String, ?> map = preferences.getAll();
-//        for (Map.Entry<String, ?> m : map.entrySet()) {
-//            if ("double".equals(m.getKey()) || "password".equals(m.getKey())) {
-//                stringBuffer.append(m.getKey()).append(": ").append(preferences.getDouble(m.getKey(), 0)).append("\n\n");
-//            } else {
-//                stringBuffer.append(m.getKey()).append(": ").append(m.getValue()).append("\n\n");
-//            }
-//        }
-//        text.setText(stringBuffer.toString());
-    }
-
-    @Override
-    public void onClick(View v) {
-        int id = v.getId();
-        Intent intent = new Intent();
-        switch (id) {
-            case R.id.tvFileList:
-                intent.setClass(this,FileListActivity.class);
-                break;
-        }
-
-        startActivity(intent);
+        recyclerView.setAdapter(myAdapter);
     }
 }

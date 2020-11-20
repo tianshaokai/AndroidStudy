@@ -1,4 +1,4 @@
-package com.tianshaokai.study.record;
+package com.tianshaokai.study.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;

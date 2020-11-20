@@ -1,5 +1,6 @@
 package com.tianshaokai.study;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -41,6 +42,10 @@ public class FileListActivity extends AppCompatActivity {
 
                 String content = FileUtil.getFileContent(file.getAbsolutePath());
                 Log.d("File", "文件内容: " + content);
+
+                Intent intent = new Intent(FileListActivity.this, FileDetailActivity.class);
+                intent.putExtra("file", content);
+                startActivity(intent);
             }
         });
 
