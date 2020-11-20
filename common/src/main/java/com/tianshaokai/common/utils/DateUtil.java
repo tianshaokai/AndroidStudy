@@ -8,14 +8,15 @@ import java.util.Map;
 
 public class DateUtil {
 
-    public static final String Format_H_m_s = "HH:mm:ss";
+    public static final String DATE_FORMAT_DATETIME = "yyyy-MM-dd HH:mm:ss";
+    public static final String DATE_FORMAT_DATE = "yyyy-MM-dd";
+    public static final String DATE_FORMAT_TIME = "HH:mm:ss";
+
     public static final String Format_H_m = "HH:mm";
     public static final String Format_m_s = "mm:ss";
 
-    public static final String Format_y_M_d_H_m_s = "yyyy-MM-dd HH:mm:ss";
     public static final String Format_y_M_d_H_m_s_2 = "yyyy-MM-dd-HH-mm-ss";
     public static final String Format_y_M_d_H_m = "yyyy-MM-dd HH:mm";
-    public static final String Format_y_M_d = "yyyy-MM-dd";
     public static final String Format_yMd_Hms = "yyyyMMdd_HHmmss";
 
 
@@ -39,6 +40,22 @@ public class DateUtil {
         SimpleDateFormat simpleDateFormat = getDateFormat(formatType);
         Date date = new Date();
         return simpleDateFormat.format(date);
+    }
+
+
+    public static String formatDataTime(long date) {
+        SimpleDateFormat simpleDateFormat = getDateFormat(DATE_FORMAT_DATETIME);
+        return simpleDateFormat.format(new Date(date));
+    }
+
+    public static String formatDate(long date) {
+        SimpleDateFormat simpleDateFormat = getDateFormat(DATE_FORMAT_DATE);
+        return simpleDateFormat.format(new Date(date));
+    }
+
+    public static String formatTime(long date) {
+        SimpleDateFormat simpleDateFormat = getDateFormat(DATE_FORMAT_TIME);
+        return simpleDateFormat.format(new Date(date));
     }
 
     public static String getTimeStamp() {
