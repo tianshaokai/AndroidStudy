@@ -37,6 +37,7 @@ public class ImageUtil {
                 url = cr.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
             } catch (Exception e) {
                 LogUtil.e("插入图片失败：" + e.toString());
+            } finally {
                 if (url != null) {
                     cr.delete(url, null, null);
                 }

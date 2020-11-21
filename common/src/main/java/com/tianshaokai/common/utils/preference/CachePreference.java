@@ -198,6 +198,10 @@ public class CachePreference {
         return preferences.getAll();
     }
 
+    public void clearAll() {
+
+    }
+
 
     private class PutRunnable implements Runnable {
         private String key;
