@@ -3,7 +3,8 @@ package com.tianshaokai.common.utils;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.os.Build;
-import android.support.v4.content.pm.PackageInfoCompat;
+
+import androidx.core.content.pm.PackageInfoCompat;
 
 import com.tianshaokai.common.utils.executor.ExecutorsManager;
 

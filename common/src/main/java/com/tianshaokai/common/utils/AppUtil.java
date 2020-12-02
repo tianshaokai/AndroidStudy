@@ -3,7 +3,8 @@ package com.tianshaokai.common.utils;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.support.v4.content.pm.PackageInfoCompat;
+
+import androidx.core.content.pm.PackageInfoCompat;
 
 public class AppUtil {
 

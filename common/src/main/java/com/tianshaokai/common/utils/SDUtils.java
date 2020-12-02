@@ -2,6 +2,8 @@ package com.tianshaokai.common.utils;
 
 import android.content.Context;
 import android.os.Environment;
+import android.os.StatFs;
+import android.util.Log;
 
 import java.io.File;
 
@@ -80,4 +82,20 @@ public class SDUtils {
     public static String getPackageCrashPath(Context context) {
         return getExternalFilesDir(context, "Crash");
     }
+
+    /**
+     * 未使用磁盘空间
+     * @return
+     */
+    public static long unusedDiskSpace() {
+        if (isSdMounted()) {
+            File sdcardDir = Environment.getExternalStorageDirectory();
+            StatFs sf = new StatFs(sdcardDir.getPath());
+            long blockSize = sf.getBlockSize();
+            long availCount = sf.getAvailableBlocks();
+            return availCount * blockSize / 1024;
+        }
+        return 0;
+    }
+
 }
