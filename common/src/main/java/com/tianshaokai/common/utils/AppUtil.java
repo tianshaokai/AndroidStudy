@@ -1,10 +1,15 @@
 package com.tianshaokai.common.utils;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.text.TextUtils;
 
 import androidx.core.content.pm.PackageInfoCompat;
+
+import java.util.Collections;
+import java.util.List;
 
 public class AppUtil {
 
@@ -64,4 +69,51 @@ public class AppUtil {
         return packageInfo.versionName;
     }
 
+    /**
+     * 获取已经安装应用
+     * @param context
+     * @param packageName
+     * @return
+     */
+    public static List<ApplicationInfo> getInstalledApplications(Context context, String packageName) {
+        if (context == null || TextUtils.isEmpty(packageName)) {
+            return Collections.emptyList();
+        }
+        return context.getPackageManager().getInstalledApplications(0);
+    }
+
+
+    /**
+     * 应用是否安装
+     * @param context
+     * @param packageName
+     * @return
+     */
+    public static boolean isInstalled(Context context, String packageName) {
+        PackageInfo packageInfo = getPackageInfo(context, packageName);
+        if(packageInfo == null) return false;
+        return true;
+    }
+
+
+    /**
+     * 获取应用包名信息
+     * @param context
+     * @param packageName
+     * @return
+     */
+    public static PackageInfo getPackageInfo(Context context, String packageName) {
+        if (context == null || TextUtils.isEmpty(packageName)) {
+            return null;
+        }
+        try {
+            PackageInfo packageInfo = context.getPackageManager().getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
+            if (packageInfo != null) {
+                return packageInfo;
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
