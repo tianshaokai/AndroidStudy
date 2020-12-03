@@ -3,7 +3,6 @@ package com.tianshaokai.common.utils;
 import android.content.Context;
 import android.os.Environment;
 import android.os.StatFs;
-import android.util.Log;
 
 import java.io.File;
 
@@ -87,7 +86,7 @@ public class SDUtils {
      * 未使用磁盘空间
      * @return
      */
-    public static long unusedDiskSpace() {
+    public static long freeDiskSpace() {
         if (isSdMounted()) {
             File sdcardDir = Environment.getExternalStorageDirectory();
             StatFs sf = new StatFs(sdcardDir.getPath());
