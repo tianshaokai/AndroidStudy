@@ -35,16 +35,7 @@ public class AppUtil {
      * @return 返回 app 信息
      */
     public PackageInfo getPackageInfo(Context context) {
-        if (context == null) {
-            return null;
-        }
-        try {
-            PackageManager manager = context.getApplicationContext().getPackageManager();
-            return manager.getPackageInfo(context.getPackageName(), 0);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return getPackageInfo(context, context.getPackageName());
     }
 
     public long getVersionCode(Context context) {
