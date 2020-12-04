@@ -12,7 +12,8 @@ public class ClipboardUtil {
 
     /**
      * 实现文本复制功能
-     * @param content
+     * @param context 上下文
+     * @param content 内容
      */
     public static void copy(Context context, String content) {
         if(context == null || TextUtils.isEmpty(content)) return;
@@ -23,7 +24,8 @@ public class ClipboardUtil {
 
     /**
      * 实现粘贴功能
-     * @return
+     * @param context 上下文
+     * @return 返回粘贴内容
      */
     public static String paste(Context context) {
         if(context == null) return "";

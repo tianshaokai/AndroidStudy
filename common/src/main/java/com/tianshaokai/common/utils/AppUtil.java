@@ -71,9 +71,9 @@ public class AppUtil {
 
     /**
      * 获取已经安装应用
-     * @param context
-     * @param packageName
-     * @return
+     * @param context       上下文
+     * @param packageName   包名
+     * @return 返回已经安装应用
      */
     public static List<ApplicationInfo> getInstalledApplications(Context context, String packageName) {
         if (context == null || TextUtils.isEmpty(packageName)) {
@@ -85,9 +85,9 @@ public class AppUtil {
 
     /**
      * 应用是否安装
-     * @param context
-     * @param packageName
-     * @return
+     * @param context       上下文
+     * @param packageName   包名
+     * @return 返回应用是否已经安装
      */
     public static boolean isInstalled(Context context, String packageName) {
         PackageInfo packageInfo = getPackageInfo(context, packageName);
@@ -98,9 +98,9 @@ public class AppUtil {
 
     /**
      * 获取应用包名信息
-     * @param context
-     * @param packageName
-     * @return
+     * @param context       上下文
+     * @param packageName   包名
+     * @return 获取应用信息
      */
     public static PackageInfo getPackageInfo(Context context, String packageName) {
         if (context == null || TextUtils.isEmpty(packageName)) {

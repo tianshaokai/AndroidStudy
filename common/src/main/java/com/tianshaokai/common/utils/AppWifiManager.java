@@ -24,7 +24,7 @@ public class AppWifiManager {
 
     /**
      * Wifi状态.
-     * @return
+     * @return 返回wifi是否可用
      */
     public boolean isWifiEnabled(){
         return wifiManager.isWifiEnabled();
@@ -32,7 +32,7 @@ public class AppWifiManager {
 
     /**
      * 打开 wifi
-     * @return
+     * @return 打开wifi
      */
     public boolean openWifi(){
         if (!isWifiEnabled()) {
@@ -44,7 +44,7 @@ public class AppWifiManager {
 
     /**
      * 关闭Wifi
-     * @return
+     * @return 关闭wifi
      */
     public boolean closeWifi(){
         if (!isWifiEnabled()) {
@@ -61,7 +61,7 @@ public class AppWifiManager {
     public void startScan() {
         wifiManager.startScan();
         scanResultList = wifiManager.getScanResults(); // 扫描返回结果列表
-        wifiConfigList = wifiManager.getConfiguredNetworks(); // 扫描配置列表
+//        wifiConfigList = wifiManager.getConfiguredNetworks(); // 扫描配置列表
     }
 
 
