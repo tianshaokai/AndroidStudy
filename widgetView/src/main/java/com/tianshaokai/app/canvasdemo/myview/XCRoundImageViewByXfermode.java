@@ -12,7 +12,8 @@ import android.graphics.Xfermode;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.widget.ImageView;
+
+import androidx.appcompat.widget.AppCompatImageView;
 
 import java.lang.ref.WeakReference;
 
@@ -21,7 +22,7 @@ import java.lang.ref.WeakReference;
  * link(http://blog.csdn.net/xq43701200/article/details/49248187)
  * Created by tianshaokai on 2016/3/10.
  */
-public class XCRoundImageViewByXfermode extends ImageView {
+public class XCRoundImageViewByXfermode extends AppCompatImageView {
 
     //数据定义
     private Paint mPaint;

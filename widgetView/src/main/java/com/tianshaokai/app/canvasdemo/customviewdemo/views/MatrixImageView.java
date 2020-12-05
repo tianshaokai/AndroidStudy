@@ -8,7 +8,8 @@ import android.graphics.Matrix;
 import android.graphics.PointF;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.widget.ImageView;
+
+import androidx.appcompat.widget.AppCompatImageView;
 
 import com.tianshaokai.app.R;
 import com.tianshaokai.app.canvasdemo.customviewdemo.utils.MeasureUtil;
@@ -22,7 +23,7 @@ import com.tianshaokai.app.canvasdemo.customviewdemo.utils.MeasureUtil;
  * @since 2014/11/27
  *
  */
-public class MatrixImageView extends ImageView {
+public class MatrixImageView extends AppCompatImageView {
 	private static final int MODE_NONE = 0x00123;// 默认的触摸模式
 	private static final int MODE_DRAG = 0x00321;// 拖拽模式
 	private static final int MODE_ZOOM = 0x00132;// 缩放or旋转模式

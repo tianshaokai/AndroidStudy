@@ -84,7 +84,7 @@ public class SDUtils {
 
     /**
      * 未使用磁盘空间
-     * @return
+     * @return 返回剩余空间
      */
     public static long freeDiskSpace() {
         if (isSdMounted()) {
