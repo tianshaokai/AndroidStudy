@@ -14,7 +14,6 @@ android {
         targetSdkVersion 30
         versionCode time.intValue()
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
