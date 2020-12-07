@@ -86,13 +86,13 @@ public class SDUtils {
      * 未使用磁盘空间
      * @return 返回剩余空间
      */
-    public static long freeDiskSpace() {
+    public static long getFreeDiskSpace() {
         if (isSdMounted()) {
             File sdcardDir = Environment.getExternalStorageDirectory();
             StatFs sf = new StatFs(sdcardDir.getPath());
             long blockSize = sf.getBlockSize();
             long availCount = sf.getAvailableBlocks();
-            return availCount * blockSize / 1024;
+            return availCount * blockSize;
         }
         return 0;
     }

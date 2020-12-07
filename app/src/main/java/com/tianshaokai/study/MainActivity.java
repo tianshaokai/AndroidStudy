@@ -36,17 +36,15 @@ public class MainActivity extends AppCompatActivity {
         myFunctionList.add(new MyFunction("录音",      AudioRecordActivity.class));
         myFunctionList.add(new MyFunction("录像",      VideoRecordActivity.class));
         myFunctionList.add(new MyFunction("本地存储",   CacheActivity.class));
+        myFunctionList.add(new MyFunction("应用列表",   AppListActivity.class));
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(gridLayoutManager);
         myAdapter = new MyAdapter(myFunctionList);
 
-        myAdapter.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position, MyFunction myFunction) {
-                Intent intent = new Intent(MainActivity.this, myFunction.getClazz());
-                startActivity(intent);
-            }
+        myAdapter.setOnItemClickListener((view, position, myFunction) -> {
+            Intent intent = new Intent(MainActivity.this, myFunction.getClazz());
+            startActivity(intent);
         });
 
         recyclerView.setAdapter(myAdapter);
