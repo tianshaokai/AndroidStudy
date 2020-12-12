@@ -74,6 +74,8 @@ public class AppUtil {
 
     /**
      * 获取已经安装应用
+     * Android 11 添加了包可见性 需要申请权限
+     * @see android.Manifest.permission#QUERY_ALL_PACKAGES
      * @param context       上下文
      * @return 返回已经安装应用
      */
