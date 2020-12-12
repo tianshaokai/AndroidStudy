@@ -1,16 +1,27 @@
 package com.tianshaokai.common.utils;
 
+import android.app.usage.StorageStats;
+import android.app.usage.StorageStatsManager;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.Build;
+import android.os.Process;
+import android.os.storage.StorageManager;
+import android.os.storage.StorageVolume;
 import android.text.TextUtils;
 
+import androidx.annotation.RequiresApi;
 import androidx.core.content.pm.PackageInfoCompat;
 
+import com.tianshaokai.common.entity.AppPackageInfo;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 public class AppUtil {
 
@@ -121,5 +132,59 @@ public class AppUtil {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public List<AppPackageInfo> getInstallPackageSizeList(Context context, List<PackageInfo> packageInfoList) {
+        StorageStatsManager storageStatsManager = (StorageStatsManager) context.getSystemService(Context.STORAGE_STATS_SERVICE);
+        StorageManager storageManager = (StorageManager) context.getSystemService(Context.STORAGE_SERVICE);
+        List<StorageVolume> storageVolumeList = storageManager.getStorageVolumes();
+
+        List<AppPackageInfo> appPackageInfoList = new ArrayList<>();
+
+        for (StorageVolume storageVolume : storageVolumeList) {
+            String uuidStr = storageVolume.getUuid();
+            UUID uuid = TextUtils.isEmpty(uuidStr) ? StorageManager.UUID_DEFAULT : UUID.fromString(uuidStr);
+            for (PackageInfo packageInfo : packageInfoList) {
+
+                try {
+                    StorageStats storageStats = storageStatsManager.queryStatsForPackage(uuid, packageInfo.packageName, Process.myUserHandle());
+                    long appSize = storageStats.getAppBytes();
+//                    long appSize = storageStats.getAppBytes() + storageStats.getCacheBytes() + storageStats.getDataBytes();
+
+                    appPackageInfoList.add(new AppPackageInfo(packageInfo, appSize));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return appPackageInfoList;
+
+
+//        final UserHandle user = android.os.Process.myUserHandle();
+//        for (StorageVolume storageVolume : storageVolumes) {
+//            final String uuidStr = storageVolume.getUuid();
+//            final UUID uuid = uuidStr == null ? StorageManager.UUID_DEFAULT : UUID.fromString(uuidStr);
+//            try {
+//                Log.d("AppLog", "storage:" + uuid + " : " + storageVolume.getDescription(context) + " : " + storageVolume.getState());
+//                Log.d("AppLog", "getFreeBytes:" + Formatter.formatShortFileSize(context, storageStatsManager.getFreeBytes(uuid)));
+//                Log.d("AppLog", "getTotalBytes:" + Formatter.formatShortFileSize(context, storageStatsManager.getTotalBytes(uuid)));
+////                            Log.d("AppLog", "storage stats for app of package name:" + PACKAGE_NAME + " : ");
+//
+//                final StorageStats storageStats = storageStatsManager.queryStatsForPackage(uuid, AppListActivity.this.getPackageName(), user);
+//                Log.d("AppLog", "getAppBytes:" + Formatter.formatShortFileSize(context, storageStats.getAppBytes()) +
+//                        " getCacheBytes:" + Formatter.formatShortFileSize(context, storageStats.getCacheBytes()) +
+//                        " getDataBytes:" + Formatter.formatShortFileSize(context, storageStats.getDataBytes()));
+//            } catch (PackageManager.NameNotFoundException e) {
+//                e.printStackTrace();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+
+
     }
 }
