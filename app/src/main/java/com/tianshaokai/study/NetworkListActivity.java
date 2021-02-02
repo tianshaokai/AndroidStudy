@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NetworkListActivity extends AppCompatActivity {
+    private static final String TAG = "NetworkListActivity";
     private ListView listView;
     private ArrayAdapter<String> arrayAdapter;
 
@@ -37,6 +38,7 @@ public class NetworkListActivity extends AppCompatActivity {
         LogUtil.d("wifi 列表：" + scanResultList.size());
         for (int i = 0; i < scanResultList.size(); i++) {
             fileNameList.add(scanResultList.get(i).SSID + "  " + scanResultList.get(i).BSSID);
+            LogUtil.d(TAG, scanResultList.get(i).SSID + "  " + scanResultList.get(i).BSSID + " " + scanResultList.get(i).level);
         }
 
         arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
