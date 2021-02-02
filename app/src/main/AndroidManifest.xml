@@ -19,6 +19,7 @@
         <activity android:name=".ScreenActivity" />
         <activity android:name=".CacheActivity" />
         <activity android:name=".AppListActivity" />
+        <activity android:name=".NetworkListActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

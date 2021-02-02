@@ -58,10 +58,11 @@ public class AppWifiManager {
     /**
      * 扫描网络
      */
-    public void startScan() {
+    public List<ScanResult> startScan() {
         wifiManager.startScan();
         scanResultList = wifiManager.getScanResults(); // 扫描返回结果列表
 //        wifiConfigList = wifiManager.getConfiguredNetworks(); // 扫描配置列表
+        return scanResultList;
     }
 
 
