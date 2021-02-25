@@ -1,6 +1,7 @@
 package com.tianshaokai.study;
 
 import android.net.wifi.ScanResult;
+import android.net.wifi.WifiInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
@@ -34,6 +35,9 @@ public class NetworkListActivity extends AppCompatActivity {
         appWifiManager.openWifi();
 
         List<ScanResult> scanResultList = appWifiManager.startScan();
+
+        WifiInfo wifiInfo = appWifiManager.getConnectedWifiInfo();
+        LogUtil.d(TAG, "连接的wifi：" + wifiInfo.getSSID());
 
         LogUtil.d("wifi 列表：" + scanResultList.size());
         for (int i = 0; i < scanResultList.size(); i++) {

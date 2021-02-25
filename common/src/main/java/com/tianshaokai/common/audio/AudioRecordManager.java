@@ -5,6 +5,7 @@ import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.text.TextUtils;
 
+import com.tianshaokai.common.utils.LogUtil;
 import com.tianshaokai.common.utils.executor.ExecutorServiceUtils;
 
 import java.io.File;
@@ -39,6 +40,7 @@ public class AudioRecordManager {
     private AudioRecordManager() {
         //AudioRecord能接受的最小的buffer大小
         minBufferSize = AudioRecord.getMinBufferSize(sampleRate, channelConfig, audioFormat);
+        LogUtil.e("AudioRecord getMinBufferSize: " + minBufferSize);
         audioRecord = new AudioRecord(audioSource, sampleRate, channelConfig, audioFormat, minBufferSize);
     }
 
