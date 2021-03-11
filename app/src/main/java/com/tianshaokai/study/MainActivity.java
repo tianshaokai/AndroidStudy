@@ -2,7 +2,6 @@ package com.tianshaokai.study;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -10,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianshaokai.study.adapter.MyAdapter;
 import com.tianshaokai.study.entity.MyFunction;
-import com.tianshaokai.study.interfaces.OnItemClickListener;
 import com.tianshaokai.study.record.AudioRecordActivity;
 import com.tianshaokai.study.record.VideoRecordActivity;
 

@@ -1,4 +1,4 @@
-package com.we.sample;
+package com.tianshaokai.app.ui;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -13,9 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.we.widget.WeRecycleView;
+import com.tianshaokai.app.R;
+import com.tianshaokai.app.view.WeRecycleView;
 
-public class MainActivity extends Activity {
+public class MainRecyclerViewActivity extends Activity {
 
     private WeRecycleView mRecycleView;
 
@@ -30,7 +31,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_recyclerview);
 
         mDensity = (int) getResources().getDisplayMetrics().density;
 
@@ -71,7 +72,7 @@ public class MainActivity extends Activity {
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 if (viewType == 0) {
-                    final ImageView imageView = new ImageView(MainActivity.this);
+                    final ImageView imageView = new ImageView(MainRecyclerViewActivity.this);
                     imageView.setScaleType(ImageView.ScaleType.FIT_XY);
                     imageView.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT
                             , (int) (getResources().getDisplayMetrics().widthPixels * 533f / 800)));
@@ -82,7 +83,7 @@ public class MainActivity extends Activity {
                         }
                     };
                 } else {
-                    TextView textView = new TextView(MainActivity.this);
+                    TextView textView = new TextView(MainRecyclerViewActivity.this);
                     textView.setTextColor(Color.BLACK);
                     textView.setTextSize(30);
                     textView.setGravity(Gravity.CENTER);

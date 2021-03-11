@@ -5,7 +5,6 @@ include ':common'
 include ':widgetView'
 
 include ':uiapp'
-include ':widget'
 
 //include ':BaiduDemo'
 

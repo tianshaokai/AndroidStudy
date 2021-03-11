@@ -1,4 +1,4 @@
-package com.we.widget;
+package com.tianshaokai.app.view;
 
 import android.content.Context;
 import android.hardware.SensorManager;
@@ -51,7 +51,7 @@ public class WeRecycleView extends RecyclerView {
     private final static int MODE_FLING = 3;
     private final static int MODE_IDLE = 4;
     private int mScrollMode;
-    private com.we.widget.WeRecycleView.WeScroller mWeScroller;
+    private WeRecycleView.WeScroller mWeScroller;
     private VelocityTracker mVelocityTracker;
     private int mMaxFlingVelocity;
     private int mMinFlingVelocity;
@@ -61,8 +61,8 @@ public class WeRecycleView extends RecyclerView {
     private int mMinTop;
     private float mMaxScale = 4f;
     private int mSafeHeight;
-    private com.we.widget.WeRecycleView.OnHeadExpandListener mListener;
-    private com.we.widget.WeRecycleView.OnLayoutListener mLayoutListener;
+    private WeRecycleView.OnHeadExpandListener mListener;
+    private WeRecycleView.OnLayoutListener mLayoutListener;
     private float mExpandPercent;
     private int mSecondViewTop = Integer.MIN_VALUE;
     private final int MIN_SCALE_VY = (int) (getResources().getDisplayMetrics().density * 150);
@@ -112,7 +112,7 @@ public class WeRecycleView extends RecyclerView {
 
     @Override
     public void setLayoutManager(RecyclerView.LayoutManager layout) {
-        super.setLayoutManager(mLayoutManager = new com.we.widget.WeRecycleView.LayoutManager(getContext()));
+        super.setLayoutManager(mLayoutManager = new WeRecycleView.LayoutManager(getContext()));
     }
 
     public void setScrollMode(int mode) {
@@ -125,7 +125,7 @@ public class WeRecycleView extends RecyclerView {
                 Object mViewFlinger = mViewFlingerField.get(this);
                 Field scrollerField = mViewFlinger.getClass().getDeclaredField("mScroller");
                 scrollerField.setAccessible(true);
-                scrollerField.set(mViewFlinger, mWeScroller = new com.we.widget.WeRecycleView.WeScroller(getContext()));
+                scrollerField.set(mViewFlinger, mWeScroller = new WeRecycleView.WeScroller(getContext()));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -218,11 +218,11 @@ public class WeRecycleView extends RecyclerView {
             //到底部填充不满时，滑动子view
             else if (reachBottom && firstItem <= 1 && secondView != null) {
                 int top = secondView.getTop();
-                int N = com.we.widget.WeRecycleView.this.getChildCount();
+                int N = WeRecycleView.this.getChildCount();
                 int sum = 0;
                 View child;
                 for (int i = 0; i < N; i++) {
-                    child = com.we.widget.WeRecycleView.this.getChildAt(i);
+                    child = WeRecycleView.this.getChildAt(i);
                     if (child != mHead) {
                         sum += child.getMeasuredHeight();
                     }
@@ -245,7 +245,7 @@ public class WeRecycleView extends RecyclerView {
                         int to = Math.max(mMinTop, top - overscrollY);
                         int trueDy = to - top;
                         for (int i = 0; i < N; i++) {
-                            com.we.widget.WeRecycleView.this.getChildAt(i).offsetTopAndBottom(trueDy);
+                            WeRecycleView.this.getChildAt(i).offsetTopAndBottom(trueDy);
                         }
                         scrollHead(0);
                     } else if (mFillScroller.isFinished()) {
@@ -254,7 +254,7 @@ public class WeRecycleView extends RecyclerView {
                         int delta = to - top;
                         int duration = computeDuration(Math.abs(delta), mHead.getMeasuredHeight(), 0);
                         mFillScroller.startScroll(0, top, 0, delta, duration);
-                        ViewCompat.postInvalidateOnAnimation(com.we.widget.WeRecycleView.this);
+                        ViewCompat.postInvalidateOnAnimation(WeRecycleView.this);
                     }
                 }
             }
@@ -486,7 +486,7 @@ public class WeRecycleView extends RecyclerView {
                     vy = Math.max(MIN_SCALE_VY, Math.min(vy, MAX_SCALE_VY));
                     mEdgeScroller.fling(0, top, 0, vy
                             , 0, 0, 0, mHead.getMeasuredHeight(), 0, mHead.getMeasuredHeight());
-                    ViewCompat.postInvalidateOnAnimation(com.we.widget.WeRecycleView.this);
+                    ViewCompat.postInvalidateOnAnimation(WeRecycleView.this);
                 }
             }
         });
@@ -537,7 +537,7 @@ public class WeRecycleView extends RecyclerView {
             if (clz == RecyclerView.class) {
                 Method setScrollState = clz.getDeclaredMethod("setScrollState", Integer.TYPE);
                 setScrollState.setAccessible(true);
-                setScrollState.invoke(this, SCROLL_STATE_IDLE);
+                setScrollState.invoke(this, RecyclerView.SCROLL_STATE_IDLE);
             }
 
             Field field = clz.getDeclaredField("mScrollState");
@@ -645,12 +645,12 @@ public class WeRecycleView extends RecyclerView {
         }
     }
 
-    public void setOnHeadExpandListener(com.we.widget.WeRecycleView.OnHeadExpandListener l) {
+    public void setOnHeadExpandListener(WeRecycleView.OnHeadExpandListener l) {
         mListener = l;
     }
 
 
-    public void setOnLayoutListener(com.we.widget.WeRecycleView.OnLayoutListener l) {
+    public void setOnLayoutListener(WeRecycleView.OnLayoutListener l) {
         mLayoutListener = l;
     }
 
@@ -681,7 +681,7 @@ public class WeRecycleView extends RecyclerView {
     private static class WeScroller extends OverScroller {
         private int mMode;
 
-        private final com.we.widget.WeRecycleView.WeScroller.WeSplineOverScroller mWeScrollerY;
+        private final WeRecycleView.WeScroller.WeSplineOverScroller mWeScrollerY;
         private Object mSuperScrollerY;
         private Interpolator mInterpolator;
 
@@ -707,12 +707,12 @@ public class WeRecycleView extends RecyclerView {
         public WeScroller(Context context, Interpolator interpolator, boolean flywheel) throws NoSuchFieldException, IllegalAccessException, NoSuchMethodException, InvocationTargetException, InstantiationException, ClassNotFoundException {
             super(context, interpolator);
             if (interpolator == null) {
-                mInterpolator = new com.we.widget.WeRecycleView.WeScroller.ViscousFluidInterpolator();
+                mInterpolator = new WeRecycleView.WeScroller.ViscousFluidInterpolator();
             } else {
                 mInterpolator = interpolator;
             }
             mFlywheel = flywheel;
-            mWeScrollerY = new com.we.widget.WeRecycleView.WeScroller.WeSplineOverScroller(context, this, true);
+            mWeScrollerY = new WeRecycleView.WeScroller.WeSplineOverScroller(context, this, true);
             mSuperScrollerY = getFieldValue(this, "mScrollerY");
 
             DEFAULT_DY = (int) (context.getResources().getDisplayMetrics().density * 10);
@@ -870,7 +870,7 @@ public class WeRecycleView extends RecyclerView {
 
         @Override
         public boolean isOverScrolled() {
-            return (!mWeScrollerY.mFinished && mWeScrollerY.mState != com.we.widget.WeRecycleView.WeScroller.WeSplineOverScroller.SPLINE);
+            return (!mWeScrollerY.mFinished && mWeScrollerY.mState != WeRecycleView.WeScroller.WeSplineOverScroller.SPLINE);
         }
 
         @Override
@@ -976,10 +976,10 @@ public class WeRecycleView extends RecyclerView {
             }
 
 
-            private WeakReference<com.we.widget.WeRecycleView.WeScroller> mWeScroller;
+            private WeakReference<WeRecycleView.WeScroller> mWeScroller;
             private boolean mIsY;
 
-            WeSplineOverScroller(Context context, com.we.widget.WeRecycleView.WeScroller scroller, boolean isY) {
+            WeSplineOverScroller(Context context, WeRecycleView.WeScroller scroller, boolean isY) {
                 mFinished = true;
                 final float ppi = context.getResources().getDisplayMetrics().density * 160.0f;
                 mPhysicalCoeff = SensorManager.GRAVITY_EARTH

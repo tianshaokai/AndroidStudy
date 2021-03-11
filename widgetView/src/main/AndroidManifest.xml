@@ -25,7 +25,7 @@
 <!--        </activity>-->
 
 
-        <activity android:name=".canvasdemo.largeImage.LargeImageViewActivity" >
+        <activity android:name=".WidgetListActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,13 +33,21 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".canvasdemo.CanvasActivity" />
+        <activity android:name=".canvasdemo.customviewdemo.PolylineViewActivity" />
+        <activity android:name=".canvasdemo.customviewdemo.EraserViewActivity" />
+        <activity android:name=".canvasdemo.WaveViewActivity" />
+        <activity android:name=".canvasdemo.pagecurl.activities.PageCurlActivity" />
+        <activity android:name=".canvasdemo.largeImage.LargeImageViewActivity" />
+        <activity android:name=".canvasdemo.handwritting.DoodleActivity" />
+
+        <activity android:name=".ui.MainRecyclerViewActivity" />
         <activity android:name=".ui.MiUiVideoActivity" />
         <activity android:name=".ui.SwitchBarActivity" />
         <activity android:name=".ui.GranzortActivity" />
         <activity android:name=".ui.PendulumActivity" />
         <activity android:name=".ui.Loading1ViewActivity" />
         <activity android:name=".ui.Loading2ViewActivity" />
-        <activity android:name=".ui.DrawActivity" />
         <activity android:name=".draw.BigViewActivity" />
         <activity android:name=".ui.FlowActivity" />
         <activity android:name=".ui.rotate.RotateActivity" />
