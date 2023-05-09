@@ -6,6 +6,6 @@ include ':widgetView'
 
 include ':uiapp'
 
-//include ':BaiduDemo'
+include ':BaiduDemo'
 
 include ':GaoDeDemo'

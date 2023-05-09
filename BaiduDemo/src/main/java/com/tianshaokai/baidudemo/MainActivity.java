@@ -111,7 +111,11 @@ public class MainActivity extends AppCompatActivity {
 
         initIndoorMap();
 
-        initLocation();
+//        try {
+//            initLocation();
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
 
 
         mBaiduMap.setOnMapStatusChangeListener(new BaiduMap.OnMapStatusChangeListener() {
@@ -265,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * 初始化定位功能
      */
-    private void initLocation() {
+    private void initLocation() throws Exception {
         //初始化定位图标
         bitmapLocationIcon = BitmapDescriptorFactory.fromResource(R.mipmap.bus_bsdl_location_icon);
         startLocation();
@@ -309,7 +313,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private void startLocation() {
+    private void startLocation() throws Exception {
         ////定位服务的客户端。宿主程序在客户端声明此类，并调用，目前只支持在主线程中启动
         mLocationClient = new LocationClient(getApplicationContext());
 
@@ -423,22 +427,22 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         //开启定位的允许
         //开启地图的定位图层
-        mBaiduMap.setMyLocationEnabled(true);
-        if (!mLocationClient.isStarted()) {
-            mLocationClient.start();
-            //开启方向传感器
-            myOrientationListener.start();
-        }
+//        mBaiduMap.setMyLocationEnabled(true);
+//        if (!mLocationClient.isStarted()) {
+//            mLocationClient.start();
+//            //开启方向传感器
+//            myOrientationListener.start();
+//        }
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         //关闭定位
-        mBaiduMap.setMyLocationEnabled(false);
-        mLocationClient.stop();
-        //停止方向传感器
-        myOrientationListener.stop();
+//        mBaiduMap.setMyLocationEnabled(false);
+//        mLocationClient.stop();
+//        //停止方向传感器
+//        myOrientationListener.stop();
     }
 
 

@@ -20,6 +20,8 @@ public class ScreenActivity extends AppCompatActivity {
     private TextView text5;
     private TextView text6;
     private TextView text7;
+    private TextView text8;
+    private TextView text9;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,6 +35,8 @@ public class ScreenActivity extends AppCompatActivity {
         text5 = findViewById(R.id.text5);
         text6 = findViewById(R.id.text6);
         text7 = findViewById(R.id.text7);
+        text8 = findViewById(R.id.text8);
+        text9 = findViewById(R.id.text9);
 
         DisplayMetrics metrics = DisplayUtil.getDisplayMetrics(this);
 
@@ -43,6 +47,13 @@ public class ScreenActivity extends AppCompatActivity {
         text5.setText(MessageFormat.format("heightPixels: {0}",  metrics.heightPixels));
         text6.setText(MessageFormat.format("xdpi: {0}",          metrics.xdpi));
         text7.setText(MessageFormat.format("ydpi: {0}",          metrics.ydpi));
+
+
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getRealMetrics(outMetrics);
+
+        text8.setText(MessageFormat.format("widthPixels 2 : {0}",   outMetrics.widthPixels));
+        text9.setText(MessageFormat.format("heightPixels 2 : {0}",  outMetrics.heightPixels));
 
     }
 }
