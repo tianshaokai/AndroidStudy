@@ -6,10 +6,12 @@ import android.os.StatFs
 
 object SDUtils {
 
+    @JvmStatic
     fun isSdMounted(): Boolean {
         return Environment.MEDIA_MOUNTED == Environment.getExternalStorageState()
     }
 
+    @JvmStatic
     fun getExternalFilesDir(context: Context, dir: String): String {
         if (!isSdMounted()) {
             return ""
@@ -20,18 +22,22 @@ object SDUtils {
         } else ""
     }
 
+    @JvmStatic
     fun getPackageDCIMPath(context: Context): String {
        return getExternalFilesDir(context, Environment.DIRECTORY_DCIM)
     }
 
+    @JvmStatic
     fun getPackageAudioPath(context: Context): String {
         return getExternalFilesDir(context, Environment.DIRECTORY_MUSIC)
     }
 
-    fun getPackageMoviePath(context: Context): String {
+    @JvmStatic
+    fun getPackageVideoPath(context: Context): String {
         return getExternalFilesDir(context, Environment.DIRECTORY_MOVIES)
     }
 
+    @JvmStatic
     fun getPackageCrashPath(context: Context): String {
         return getExternalFilesDir(context, "Crash")
     }
@@ -40,6 +46,7 @@ object SDUtils {
      * 获取剩余存储，有外部取外部，没有取内部
      * 返回 字节 Bytes
      */
+    @JvmStatic
     fun getMemorySize(): Long {
         return if (isSdMounted()) {
             getAvailableExternalMemorySize()
@@ -51,6 +58,7 @@ object SDUtils {
     /**
      * 获取sdcard剩余存储空间
      */
+    @JvmStatic
     fun getAvailableExternalMemorySize(): Long {
         return if (isSdMounted()) {
             try {
@@ -70,6 +78,7 @@ object SDUtils {
     /**
      * 获取手机内部剩余存储空间
      */
+    @JvmStatic
     fun getAvailableInternalMemorySize(): Long {
         val path = Environment.getDataDirectory()
         val stat = StatFs(path.path)
@@ -81,6 +90,7 @@ object SDUtils {
     /**
      * 获取手机内部总的存储空间
      */
+    @JvmStatic
     fun getTotalInternalMemorySize(): Long {
         val path = Environment.getDataDirectory()
         val stat = StatFs(path.path)
