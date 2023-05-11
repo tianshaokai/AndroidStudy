@@ -16,9 +16,9 @@ object SDUtils {
         if (!isSdMounted()) {
             return ""
         }
-        val filePath = context.applicationContext.getExternalFilesDir(dir)
-        return if (filePath != null) {
-            filePath.absolutePath
+        val file = context.applicationContext.getExternalFilesDir(dir)
+        return if (file != null) {
+            file.absolutePath
         } else ""
     }
 

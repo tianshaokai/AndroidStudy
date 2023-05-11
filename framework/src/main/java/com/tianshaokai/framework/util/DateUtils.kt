@@ -4,16 +4,28 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 object DateUtils {
-    const val DATE_FORMAT_DATETIME = "yyyy-MM-dd HH:mm:ss"
-    const val DATE_FORMAT_DATE = "yyyy-MM-dd"
-    const val DATE_FORMAT_TIME = "HH:mm:ss"
+    //format格式,有缺少的参照样式增加即可
+    const val FORMAT_yyyy_MM_dd_HH_mm_ss = "yyyy-MM-dd HH:mm:ss"
+    const val FORMAT_yyyy_MM_dd_HH_mm_ss_2 = "yyyy_MM_dd_HH_mm_ss"
+    const val FORMAT_yyyy_MM_dd_HH_mm = "yyyy年MM月dd日 HH:mm"
 
-    const val Format_H_m = "HH:mm"
-    const val Format_m_s = "mm:ss"
+    const val FORMAT_yyyy_MM_dd = "yyyy-MM-dd"
+    const val FORMAT_yyyyMMdd = "yyyyMMdd"
 
-    const val Format_y_M_d_H_m_s_2 = "yyyy-MM-dd-HH-mm-ss"
-    const val Format_y_M_d_H_m = "yyyy-MM-dd HH:mm"
-    const val Format_yMd_Hms = "yyyyMMdd_HHmmss"
+    const val FORMAT_HH_mm_ss = "HH:mm:ss"
+
+    const val FORMAT_MM_dd_HH_mm = "MM月dd日 HH:mm"
+
+    const val FORMAT_MM_dd = "MM月dd日"
+    const val FORMAT_M_d = "M月d日"
+
+    const val FORMAT_HH_mm = "HH:mm"
+    const val FORMAT_mm_ss = "mm:ss"
+
+    //时区，有缺少的参照样式增加即可
+    const val TIME_CHINA = "Asia/Shanghai"
+
+    const val TIME_H_24 = (1000 * 60 * 60 * 24).toLong()
 
 
     private val sThreadLocal = ThreadLocal<MutableMap<String, SimpleDateFormat>>()
@@ -40,17 +52,17 @@ object DateUtils {
 
 
     fun formatDataTime(date: Long): String {
-        val simpleDateFormat = getDateFormat(DATE_FORMAT_DATETIME)
+        val simpleDateFormat = getDateFormat(FORMAT_yyyy_MM_dd_HH_mm_ss)
         return simpleDateFormat.format(Date(date))
     }
 
     fun formatDate(date: Long): String {
-        val simpleDateFormat = getDateFormat(DATE_FORMAT_DATE)
+        val simpleDateFormat = getDateFormat(FORMAT_yyyy_MM_dd)
         return simpleDateFormat.format(Date(date))
     }
 
     fun formatTime(date: Long): String {
-        val simpleDateFormat = getDateFormat(DATE_FORMAT_TIME)
+        val simpleDateFormat = getDateFormat(FORMAT_HH_mm_ss)
         return simpleDateFormat.format(Date(date))
     }
 
