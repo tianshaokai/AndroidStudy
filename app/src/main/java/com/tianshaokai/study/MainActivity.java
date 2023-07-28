@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         myFunctionList.add(new MyFunction("本地存储",   CacheActivity.class));
         myFunctionList.add(new MyFunction("应用列表",   AppListActivity.class));
         myFunctionList.add(new MyFunction("网络列表",   NetworkListActivity.class));
+        myFunctionList.add(new MyFunction("系统属性",   SystemPropertyActivity.class));
+        myFunctionList.add(new MyFunction("画图",   SignatureActivity.class));
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(gridLayoutManager);

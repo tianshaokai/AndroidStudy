@@ -111,11 +111,11 @@ public class MainActivity extends AppCompatActivity {
 
         initIndoorMap();
 
-//        try {
-//            initLocation();
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
+        try {
+            initLocation();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
         mBaiduMap.setOnMapStatusChangeListener(new BaiduMap.OnMapStatusChangeListener() {
@@ -320,10 +320,11 @@ public class MainActivity extends AppCompatActivity {
         //通过LocationClientOption设置LocationClient相关参数
         LocationClientOption locationOption = new LocationClientOption();
 
-        //可选，设置是否使用gps，默认false
-        //使用高精度和仅用设备两种定位模式的，参数必须设置为true
-        locationOption.setOpenGps(true);                // 打开gps
         locationOption.setCoorType(CoorType_BD09ll);    // 设置坐标类型
+
+        //可选，设置是否使用卫星定位，默认false
+        //使用高精度和仅用设备两种定位模式的，参数必须设置为true
+        locationOption.setOpenGnss(true);
 
         //可选，设置发起定位请求的间隔，int类型，单位ms
         //如果设置为0，则代表单次定位，即仅定位一次，默认为0
@@ -427,22 +428,22 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         //开启定位的允许
         //开启地图的定位图层
-//        mBaiduMap.setMyLocationEnabled(true);
-//        if (!mLocationClient.isStarted()) {
-//            mLocationClient.start();
-//            //开启方向传感器
-//            myOrientationListener.start();
-//        }
+        mBaiduMap.setMyLocationEnabled(true);
+        if (!mLocationClient.isStarted()) {
+            mLocationClient.start();
+            //开启方向传感器
+            myOrientationListener.start();
+        }
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         //关闭定位
-//        mBaiduMap.setMyLocationEnabled(false);
-//        mLocationClient.stop();
-//        //停止方向传感器
-//        myOrientationListener.stop();
+        mBaiduMap.setMyLocationEnabled(false);
+        mLocationClient.stop();
+        //停止方向传感器
+        myOrientationListener.stop();
     }
 
 

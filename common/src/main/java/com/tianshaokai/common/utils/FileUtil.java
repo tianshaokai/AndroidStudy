@@ -3,6 +3,8 @@ package com.tianshaokai.common.utils;
 import android.content.Context;
 import android.graphics.Bitmap;
 
+import com.tianshaokai.framework.util.SDUtils;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;

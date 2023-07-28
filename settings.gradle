@@ -4,8 +4,7 @@ include ':common'
 
 include ':widgetView'
 
-include ':uiapp'
-
 include ':BaiduDemo'
 
 include ':GaoDeDemo'
+include ':framework'

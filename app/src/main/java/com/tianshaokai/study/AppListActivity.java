@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianshaokai.common.entity.AppPackageInfo;
 import com.tianshaokai.common.utils.AppUtil;
+import com.tianshaokai.framework.util.AppUtils;
 import com.tianshaokai.study.adapter.AppListAdapter;
 
 import java.util.ArrayList;
@@ -50,7 +51,7 @@ public class AppListActivity extends AppCompatActivity {
 //            startActivity(intent);
 //        });
 
-        List<PackageInfo> packageInfoList = AppUtil.getInstance().getInstalledPackages(this);
+        List<PackageInfo> packageInfoList = AppUtils.getInstalledPackages(this);
 
         if(packageInfoList == null || packageInfoList.isEmpty()) return;
 
