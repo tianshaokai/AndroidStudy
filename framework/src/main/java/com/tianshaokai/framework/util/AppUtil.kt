@@ -9,7 +9,7 @@ import android.os.Build
 import java.util.*
 import java.util.Collections.emptyList
 
-object AppUtils {
+object AppUtil {
 
     /**
      * 获取包名信息

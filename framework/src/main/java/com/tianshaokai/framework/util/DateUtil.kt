@@ -1,13 +1,16 @@
 package com.tianshaokai.framework.util
 
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
-object DateUtils {
+object DateUtil {
     //format格式,有缺少的参照样式增加即可
     const val FORMAT_yyyy_MM_dd_HH_mm_ss = "yyyy-MM-dd HH:mm:ss"
     const val FORMAT_yyyy_MM_dd_HH_mm_ss_2 = "yyyy_MM_dd_HH_mm_ss"
     const val FORMAT_yyyy_MM_dd_HH_mm = "yyyy年MM月dd日 HH:mm"
+
+    const val FORMAT_yyyyMMdd_HHmmss = "yyyyMMdd_HHmmss"
 
     const val FORMAT_yyyy_MM_dd = "yyyy-MM-dd"
     const val FORMAT_yyyyMMdd = "yyyyMMdd"
@@ -64,6 +67,11 @@ object DateUtils {
     fun formatTime(date: Long): String {
         val simpleDateFormat = getDateFormat(FORMAT_HH_mm_ss)
         return simpleDateFormat.format(Date(date))
+    }
+
+    @JvmStatic
+    fun getTimeStamp(): String {
+        return getStringDate(FORMAT_yyyyMMdd_HHmmss)
     }
 
 }

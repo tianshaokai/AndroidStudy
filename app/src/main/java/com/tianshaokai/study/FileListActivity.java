@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.tianshaokai.common.utils.FileUtil;
-import com.tianshaokai.framework.util.SDUtils;
+import com.tianshaokai.framework.util.SDUtil;
 
 import java.io.File;
 import java.text.MessageFormat;
@@ -34,7 +34,7 @@ public class FileListActivity extends AppCompatActivity {
         textView = findViewById(R.id.text);
         listView = findViewById(R.id.listview);
 
-        textView.setText(MessageFormat.format("剩余空间：{0}", FileUtil.formatFileSize(SDUtils.getMemorySize())));
+        textView.setText(MessageFormat.format("剩余空间：{0}", FileUtil.formatFileSize(SDUtil.getMemorySize())));
 
         arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         listView.setAdapter(arrayAdapter);
@@ -66,7 +66,7 @@ public class FileListActivity extends AppCompatActivity {
     }
 
     private File[] getFilesArray() {
-        String path = SDUtils.getExternalFilesDir(this, "speech");
+        String path = SDUtil.getExternalFilesDir(this, "speech");
 
         File fileDir = new File(path);
 

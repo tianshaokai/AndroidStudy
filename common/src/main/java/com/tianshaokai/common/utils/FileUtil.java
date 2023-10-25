@@ -3,7 +3,8 @@ package com.tianshaokai.common.utils;
 import android.content.Context;
 import android.graphics.Bitmap;
 
-import com.tianshaokai.framework.util.SDUtils;
+import com.tianshaokai.framework.util.DateUtil;
+import com.tianshaokai.framework.util.SDUtil;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -20,7 +21,7 @@ public class FileUtil {
     private static final String TAG = "FileUtil";
 
     public static String saveBitmapToDCIM(Context context, Bitmap bitmap) {
-        String path = SDUtils.getPackageDCIMPath(context);
+        String path = SDUtil.getPackageDCIMPath(context);
         String filePath = path + File.separator + "IMG_" + DateUtil.getTimeStamp() + ".png";
         File file = new File(filePath);
         FileOutputStream out = null;

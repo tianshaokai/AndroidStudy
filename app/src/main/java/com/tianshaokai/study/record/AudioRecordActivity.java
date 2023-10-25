@@ -15,9 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.tianshaokai.common.audio.AudioRecordManager;
 import com.tianshaokai.common.audio.AudioTrackManager;
-import com.tianshaokai.common.utils.DateUtil;
 import com.tianshaokai.common.utils.FileUtil;
-import com.tianshaokai.framework.util.SDUtils;
+import com.tianshaokai.framework.util.DateUtil;
+import com.tianshaokai.framework.util.SDUtil;
 import com.tianshaokai.study.R;
 import com.tianshaokai.study.adapter.AudioRecordListAdapter;
 
@@ -94,7 +94,7 @@ public class AudioRecordActivity extends AppCompatActivity {
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String filePath = SDUtils.getPackageAudioPath(AudioRecordActivity.this);
+                String filePath = SDUtil.getPackageAudioPath(AudioRecordActivity.this);
                 FileUtil.deleteFile(filePath);
                 audioRecordListAdapter.deleteFile();
             }
@@ -102,7 +102,7 @@ public class AudioRecordActivity extends AppCompatActivity {
     }
 
     private void startRecord() {
-        String filePath = SDUtils.getPackageAudioPath(this);
+        String filePath = SDUtil.getPackageAudioPath(this);
         audioPath = filePath + File.separator + DateUtil.getTimeStamp() + ".pcm";
         AudioRecordManager.getInstance().setRecordPath(audioPath).startRecord();
     }
@@ -112,7 +112,7 @@ public class AudioRecordActivity extends AppCompatActivity {
     }
 
     private List<File> getAudioList() {
-        String filePath = SDUtils.getPackageAudioPath(this);
+        String filePath = SDUtil.getPackageAudioPath(this);
         File[] fileArray = new File(filePath).listFiles(new FileFilter() {
             @Override
             public boolean accept(File pathname) {

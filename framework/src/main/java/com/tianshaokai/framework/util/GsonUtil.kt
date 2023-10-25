@@ -3,7 +3,7 @@ package com.tianshaokai.framework.util
 import android.util.Log
 import com.google.gson.*
 
-object GsonUtils {
+object GsonUtil {
     private val gson: Gson = Gson()
 
     fun toJson(any: Any): String {
