@@ -96,4 +96,14 @@
         android:textColor="@android:color/white"
         android:background="@android:color/black"/>
 
+    <TextView
+        android:id="@+id/text10"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:background="@android:color/black"/>
+
 </LinearLayout>
