@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.Environment
 import android.os.StatFs
 
-object SDUtil {
+object SDUtils {
 
     @JvmStatic
     fun isSdMounted(): Boolean {

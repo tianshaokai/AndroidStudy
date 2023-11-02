@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-object DateUtil {
+object DateUtils {
     //format格式,有缺少的参照样式增加即可
     const val FORMAT_yyyy_MM_dd_HH_mm_ss = "yyyy-MM-dd HH:mm:ss"
     const val FORMAT_yyyy_MM_dd_HH_mm_ss_2 = "yyyy_MM_dd_HH_mm_ss"

@@ -50,7 +50,7 @@ public class AppListActivity extends AppCompatActivity {
 //            startActivity(intent);
 //        });
 
-        List<PackageInfo> packageInfoList = com.tianshaokai.framework.util.AppUtil.getInstalledPackages(this);
+        List<PackageInfo> packageInfoList = com.tianshaokai.framework.util.AppUtils.getInstalledPackages(this);
 
         if(packageInfoList == null || packageInfoList.isEmpty()) return;
 
