@@ -6,15 +6,12 @@ import android.graphics.Bitmap;
 import com.tianshaokai.framework.util.DateUtils;
 import com.tianshaokai.framework.util.SDUtils;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.DecimalFormat;
 
 public class FileUtil {
 
@@ -121,30 +118,7 @@ public class FileUtil {
         return size;
     }
 
-    /**
-     * 转换文件大小
-     *
-     * @param fileS
-     * @return
-     */
-    public static String formatFileSize(long fileS) {
-        DecimalFormat df = new DecimalFormat("#.00");
-        String fileSizeString = "";
-        String wrongSize = "0B";
-        if (fileS == 0) {
-            return wrongSize;
-        }
-        if (fileS < 1024) {
-            fileSizeString = df.format((double) fileS) + "B";
-        } else if (fileS < 1048576) {
-            fileSizeString = df.format((double) fileS / 1024) + "KB";
-        } else if (fileS < 1073741824) {
-            fileSizeString = df.format((double) fileS / 1048576) + "MB";
-        } else {
-            fileSizeString = df.format((double) fileS / 1073741824) + "GB";
-        }
-        return fileSizeString;
-    }
+
 
     public static boolean deleteDir(String dirName) {
         if (!dirName.endsWith(File.separator)) {//dirName不以分隔符结尾则自动添加分隔符
@@ -204,34 +178,7 @@ public class FileUtil {
         }
     }
 
-    public static String getFileContent(String path) {
-        FileReader fileReader = null;
-        BufferedReader bufferReader = null;
-        try {
-            fileReader = new FileReader(path);
-            bufferReader = new BufferedReader(fileReader);
-            StringBuilder stringBuilder = new StringBuilder();
-            String str;
-            while ((str = bufferReader.readLine()) != null) {
-                stringBuilder.append(str);
-            }
-            return stringBuilder.toString();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (fileReader != null) {
-                    fileReader.close();
-                }
-                if (bufferReader != null) {
-                    bufferReader.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return "";
-    }
+
 
     public static void writeFile(String fileName, String filePath, String content) {
         writeFile(fileName, filePath, content, false);

@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.tianshaokai.common.utils.FileUtil;
+import com.tianshaokai.framework.util.FileUtils;
 import com.tianshaokai.framework.util.SDUtils;
 
 import java.io.File;
@@ -34,7 +34,7 @@ public class FileListActivity extends AppCompatActivity {
         textView = findViewById(R.id.text);
         listView = findViewById(R.id.listview);
 
-        textView.setText(MessageFormat.format("剩余空间：{0}", FileUtil.formatFileSize(SDUtils.getMemorySize())));
+        textView.setText(MessageFormat.format("剩余空间：{0}", FileUtils.formatFileSize(SDUtils.getMemorySize())));
 
         arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         listView.setAdapter(arrayAdapter);
@@ -43,7 +43,7 @@ public class FileListActivity extends AppCompatActivity {
 
             File file = fileArray[position];
 
-            String content = FileUtil.getFileContent(file.getAbsolutePath());
+            String content = FileUtils.getFileContent(file.getAbsolutePath());
             Log.d("File", "文件内容: " + content);
 
             Intent intent = new Intent(FileListActivity.this, FileDetailActivity.class);
