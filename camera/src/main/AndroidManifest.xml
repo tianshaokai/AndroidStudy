@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tianshaokai.camera">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- 支持相机才能运行 -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <application>
+
+        <activity android:name="com.tianshaokai.camera.activity.TakePhotoCamera1Activity" />
+
+    </application>
+</manifest>

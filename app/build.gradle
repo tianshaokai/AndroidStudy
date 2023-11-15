@@ -47,6 +47,7 @@ dependencies {
 
     implementation project(path: ':common')
     implementation project(path: ':framework')
+    implementation project(path: ':camera')
 
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
 

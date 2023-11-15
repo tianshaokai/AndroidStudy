@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.tianshaokai.camera.activity.TakePhotoCamera1Activity;
 import com.tianshaokai.study.adapter.MyAdapter;
 import com.tianshaokai.study.entity.MyFunction;
 import com.tianshaokai.study.record.AudioRecordActivity;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         myFunctionList.add(new MyFunction("网络列表",   NetworkListActivity.class));
         myFunctionList.add(new MyFunction("系统属性",   SystemPropertyActivity.class));
         myFunctionList.add(new MyFunction("画图",   SignatureActivity.class));
+        myFunctionList.add(new MyFunction("拍照",   TakePhotoCamera1Activity.class));
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(gridLayoutManager);

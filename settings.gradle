@@ -1,6 +1,7 @@
 include ':app'
 
 include ':common'
+include ':camera'
 
 include ':widgetView'
 
