@@ -50,6 +50,6 @@ dependencies {
     implementation project(path: ':camera')
 
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
-
+    implementation 'com.tencent.tav:libpag:4.3.47'
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.6'
 }

@@ -14,6 +14,7 @@ import com.tianshaokai.study.record.AudioRecordActivity;
 import com.tianshaokai.study.record.VideoRecordActivity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,16 +31,19 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView);
 
-        myFunctionList.add(new MyFunction("文件列表",   FileListActivity.class));
-        myFunctionList.add(new MyFunction("屏幕密度",   ScreenActivity.class));
-        myFunctionList.add(new MyFunction("录音",      AudioRecordActivity.class));
-        myFunctionList.add(new MyFunction("录像",      VideoRecordActivity.class));
-        myFunctionList.add(new MyFunction("本地存储",   CacheActivity.class));
-        myFunctionList.add(new MyFunction("应用列表",   AppListActivity.class));
-        myFunctionList.add(new MyFunction("网络列表",   NetworkListActivity.class));
-        myFunctionList.add(new MyFunction("系统属性",   SystemPropertyActivity.class));
-        myFunctionList.add(new MyFunction("画图",   SignatureActivity.class));
-        myFunctionList.add(new MyFunction("拍照",   TakePhotoCamera1Activity.class));
+        List<MyFunction> list = Arrays.asList(
+                new MyFunction("文件列表", FileListActivity.class),
+                new MyFunction("屏幕密度", ScreenActivity.class),
+                new MyFunction("录音", AudioRecordActivity.class),
+                new MyFunction("录像", VideoRecordActivity.class),
+                new MyFunction("本地存储", CacheActivity.class),
+                new MyFunction("应用列表", AppListActivity.class),
+                new MyFunction("网络列表", NetworkListActivity.class),
+                new MyFunction("系统属性", SystemPropertyActivity.class),
+                new MyFunction("画图", SignatureActivity.class),
+                new MyFunction("拍照", TakePhotoCamera1Activity.class),
+                new MyFunction("PAG", PAGActivity.class));
+        myFunctionList.addAll(list);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(gridLayoutManager);
