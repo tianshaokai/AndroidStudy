@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -12,7 +13,7 @@ import com.tianshaokai.camera.widget.CameraPreviewSurfaceView
 
 class TakePhotoCamera1Activity : AppCompatActivity() {
 
-    private lateinit var cameraPreviewSurfaceView: CameraPreviewSurfaceView
+    private lateinit var frameLayout: FrameLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +25,7 @@ class TakePhotoCamera1Activity : AppCompatActivity() {
     }
 
     private fun findView() {
-        cameraPreviewSurfaceView = findViewById(R.id.surfaceView)
+        frameLayout = findViewById(R.id.frameLayout)
     }
 
     private fun openCamera() {
@@ -34,7 +35,12 @@ class TakePhotoCamera1Activity : AppCompatActivity() {
             }
             return
         }
-        cameraPreviewSurfaceView.startCameraPreview()
+        createCameraPreview()
+    }
+
+    private fun createCameraPreview() {
+        val cameraPreviewSurfaceView = CameraPreviewSurfaceView(this)
+        frameLayout.addView(cameraPreviewSurfaceView)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String?>, grantResults: IntArray) {
