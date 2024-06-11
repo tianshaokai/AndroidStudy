@@ -4,19 +4,20 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.SurfaceHolder
 import android.view.SurfaceView
+import com.tianshaokai.camera.api.PreviewAction
 import com.tianshaokai.camera.camera1.basic.Camera1Engine
 import com.tianshaokai.camera.type.CameraFacing
 
 class CameraPreviewSurfaceView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
-) : SurfaceView(context, attrs), SurfaceHolder.Callback {
+) : SurfaceView(context, attrs), SurfaceHolder.Callback, PreviewAction {
 
     private val TAG = "CameraPreviewSurface"
 
     private var camera1Engine: Camera1Engine? = null
 
     init {
-        camera1Engine = Camera1Engine().apply {
+        camera1Engine = Camera1Engine(this).apply {
             setCameraFacing(CameraFacing.BACK)
         }
 
@@ -36,5 +37,12 @@ class CameraPreviewSurfaceView @JvmOverloads constructor(
         camera1Engine?.stopPreview()
     }
 
+    override fun getPreviewWidth(): Int {
+        return width
+    }
+
+    override fun getPreviewHeight(): Int {
+        return height
+    }
 
 }
