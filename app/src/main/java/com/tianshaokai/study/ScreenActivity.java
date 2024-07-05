@@ -23,6 +23,8 @@ public class ScreenActivity extends AppCompatActivity {
     private TextView text8;
     private TextView text9;
     private TextView text10;
+    private TextView text11;
+    private TextView text12;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,6 +41,8 @@ public class ScreenActivity extends AppCompatActivity {
         text8 = findViewById(R.id.text8);
         text9 = findViewById(R.id.text9);
         text10 = findViewById(R.id.text10);
+        text11 = findViewById(R.id.text11);
+        text12 = findViewById(R.id.text12);
 
         DisplayMetrics metrics = DisplayUtil.getDisplayMetrics(this);
 
@@ -58,6 +62,8 @@ public class ScreenActivity extends AppCompatActivity {
         text9.setText(MessageFormat.format("heightPixels 2 : {0}",  outMetrics.heightPixels));
 
         text10.setText(MessageFormat.format("smallestScreenWidthDp : {0}",   getResources().getConfiguration().smallestScreenWidthDp));
+        text11.setText(MessageFormat.format("screenWidthDp : {0}",   getResources().getConfiguration().screenWidthDp));
+        text12.setText(MessageFormat.format("screenHeightDp : {0}",   getResources().getConfiguration().screenHeightDp));
 
     }
 }
