@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get User Media in WebView</title>
+</head>
+<body>
+    <h1>Access Camera in WebView</h1>
+    <video id="videoElement" autoplay playsinline></video>
+
+    <script>
+      console.log('初始化1')
+        const videoElement = document.getElementById('videoElement');
+        console.log('获取节点2')
+        // Check if getUserMedia is supported in the browser
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+          console.log('是否有权限3')
+            // Request access to the camera
+            navigator.mediaDevices.getUserMedia({
+              video: {
+                  // facingMode: { exact: "user" } // 使用前置摄像头
+                  // 或者
+                  facingMode: { exact: "environment" } // 使用后置摄像头
+                }
+             })
+                .then(stream => {
+                  console.log('获取流4 =>' + stream)
+                    // Set the source of the video element to be the stream from the camera
+                    videoElement.srcObject = stream;
+                })
+                .catch(error => {
+                  console.log('获取流失败5')
+                    console.error("Error accessing media devices.", error);
+                });
+        } else {
+            alert("getUserMedia not supported on your browser!");
+        }
+    </script>
+</body>
+</html>
