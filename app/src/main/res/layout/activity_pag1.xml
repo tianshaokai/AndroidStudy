@@ -10,6 +10,13 @@
         android:layout_width="112dp"
         android:layout_height="112dp"
         android:layout_marginLeft="112dp"
-        android:layout_marginBottom="30dp"
-        android:background="#f93834" />
+        android:layout_marginBottom="30dp" />
+
+
+    <org.libpag.PAGImageView
+        android:id="@+id/pag_imageview"
+        android:layout_width="112dp"
+        android:layout_height="112dp"
+        android:layout_marginLeft="112dp"
+        android:layout_marginBottom="30dp" />
 </LinearLayout>
