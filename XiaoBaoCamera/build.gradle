@@ -6,8 +6,8 @@ android {
     long time = System.currentTimeMillis() / 1000;
     compileSdkVersion 34
     defaultConfig {
-        applicationId "com.tianshaokai.study"
-        minSdkVersion 21
+        applicationId "com.tianshaokai.camera"
+        minSdkVersion 23
         targetSdkVersion 34
         versionCode time.intValue()
         versionName "1.0"
@@ -45,12 +45,10 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
-    implementation project(path: ':common')
-    implementation project(path: ':framework')
-    implementation project(path: ':camera')
-
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'com.tencent.tav:libpag:4.3.47'
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.6'
 
+
+    implementation 'com.airbnb.android:lottie:6.6.7'
 }

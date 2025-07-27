@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.tianshaokai.study">
+    package="com.tianshaokai.camera">
 
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
 
     <application
-        android:name=".DemoApplication"
+        android:name="com.tianshaokai.camera.DemoApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".record.AudioRecordActivity" />
-        <activity android:name=".record.VideoRecordActivity" />
-        <activity android:name=".FileListActivity" />
-        <activity android:name=".FileDetailActivity" />
-        <activity android:name=".ScreenActivity" />
-        <activity android:name=".CacheActivity" />
-        <activity android:name=".AppListActivity" />
-        <activity android:name=".NetworkListActivity" />
-        <activity android:name=".SystemPropertyActivity" />
-        <activity android:name=".SignatureActivity" />
-        <activity android:name=".PAGActivity" />
-        <activity android:name=".MainActivity"
+        <activity android:name="com.tianshaokai.camera.record.AudioRecordActivity" />
+        <activity android:name="com.tianshaokai.camera.record.VideoRecordActivity" />
+        <activity android:name="com.tianshaokai.camera.FileListActivity" />
+        <activity android:name="com.tianshaokai.camera.FileDetailActivity" />
+        <activity android:name="com.tianshaokai.camera.ScreenActivity" />
+        <activity android:name="com.tianshaokai.camera.CacheActivity" />
+        <activity android:name="com.tianshaokai.camera.AppListActivity" />
+        <activity android:name="com.tianshaokai.camera.NetworkListActivity" />
+        <activity android:name="com.tianshaokai.camera.SystemPropertyActivity" />
+        <activity android:name="com.tianshaokai.camera.SignatureActivity" />
+        <activity android:name="com.tianshaokai.camera.PAGActivity" />
+        <activity android:name="com.tianshaokai.camera.TestActivity" />
+        <activity android:name="com.tianshaokai.camera.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

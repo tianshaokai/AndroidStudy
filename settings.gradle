@@ -1,11 +1,13 @@
-include ':app'
+//include ':app'
+//
+//include ':common'
+//include ':camera'
+//
+////include ':widgetView'
+//
+//include ':BaiduDemo'
+//
+//include ':GaoDeDemo'
+//include ':framework'
 
-include ':common'
-include ':camera'
-
-include ':widgetView'
-
-include ':BaiduDemo'
-
-include ':GaoDeDemo'
-include ':framework'
+include ':XiaoBaoCamera'

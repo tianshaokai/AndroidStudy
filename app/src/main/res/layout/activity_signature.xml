@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.tianshaokai.study.SignatureView
+    <com.tianshaokai.camera.SignatureView
         android:id="@+id/signature_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="text_style">
+        <!-- 定义一个布尔属性，用于控制是否使用默认文本颜色 -->
+        <attr name="textColorDefault" format="boolean" />
+    </declare-styleable>
+</resources>
