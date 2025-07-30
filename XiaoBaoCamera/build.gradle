@@ -51,4 +51,6 @@ dependencies {
 
 
     implementation 'com.airbnb.android:lottie:6.6.7'
+
+    implementation 'com.google.android.gms:play-services-tasks:18.3.2'
 }

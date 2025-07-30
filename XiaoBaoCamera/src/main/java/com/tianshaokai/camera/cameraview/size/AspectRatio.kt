@@ -49,7 +49,8 @@ class AspectRatio private constructor(private val x: Int, private val y: Int) : 
     }
 
     fun matches(size: Size, tolerance: Float): Boolean {
-        return kotlin.math.abs(toFloat() - (size.getWidth().toFloat() / size.getHeight().toFloat())) <= tolerance
+        val currentRatio = size.getWidth().toFloat() / size.getHeight().toFloat()
+        return kotlin.math.abs(toFloat() - currentRatio) <= tolerance
     }
 
     override fun equals(other: Any?): Boolean {

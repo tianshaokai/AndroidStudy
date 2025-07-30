@@ -5,6 +5,8 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.gms.tasks.TaskCompletionSource
+import com.google.android.gms.tasks.Tasks
 import com.tianshaokai.camera.cameraview.size.Size
 
 abstract class CameraPreview<T : View, Output>(context: Context, viewGroup: ViewGroup) {

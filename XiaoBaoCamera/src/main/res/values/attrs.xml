@@ -4,4 +4,29 @@
         <!-- 定义一个布尔属性，用于控制是否使用默认文本颜色 -->
         <attr name="textColorDefault" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="CameraView">
+        <!-- Picture Size Attributes -->
+        <attr name="cameraPictureSizeMinWidth" format="integer" />
+        <attr name="cameraPictureSizeMaxWidth" format="integer" />
+        <attr name="cameraPictureSizeMinHeight" format="integer" />
+        <attr name="cameraPictureSizeMaxHeight" format="integer" />
+        <attr name="cameraPictureSizeMinArea" format="integer" />
+        <attr name="cameraPictureSizeMaxArea" format="integer" />
+        <attr name="cameraPictureSizeAspectRatio" format="string" />
+        <attr name="cameraPictureSizeSmallest" format="boolean" />
+        <attr name="cameraPictureSizeBiggest" format="boolean" />
+
+        <!-- Video Size Attributes -->
+        <attr name="cameraVideoSizeMinWidth" format="integer" />
+        <attr name="cameraVideoSizeMaxWidth" format="integer" />
+        <attr name="cameraVideoSizeMinHeight" format="integer" />
+        <attr name="cameraVideoSizeMaxHeight" format="integer" />
+        <attr name="cameraVideoSizeMinArea" format="integer" />
+        <attr name="cameraVideoSizeMaxArea" format="integer" />
+        <attr name="cameraVideoSizeAspectRatio" format="string" />
+        <attr name="cameraVideoSizeSmallest" format="boolean" />
+        <attr name="cameraVideoSizeBiggest" format="boolean" />
+    </declare-styleable>
+
 </resources>
