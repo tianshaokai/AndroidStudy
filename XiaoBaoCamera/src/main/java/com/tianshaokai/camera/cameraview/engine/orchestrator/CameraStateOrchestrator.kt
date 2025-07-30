@@ -1,5 +1,6 @@
 package com.tianshaokai.camera.cameraview.engine.orchestrator
 
+import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
 import com.tianshaokai.camera.cameraview.LOG
@@ -41,21 +42,21 @@ class CameraStateOrchestrator(callback: Callback) : CameraOrchestrator(callback)
             "${fromState.name} >> ${toState.name}"
         }
 
-        return schedule(taskName, handleExceptions, Callable {
-            if (getCurrentState() != fromState) {
-                LOG.w(
-                    taskName.uppercase(),
-                    "- State mismatch, aborting. current: $currentState, from: $fromState, to: $toState"
-                )
-                return@Callable Tasks.forCanceled()
-            }
-            callable.call().continueWithTask(callback.getJobWorker(taskName).executor) { task ->
-                if (task.isSuccessful || isReversing) {
-                    currentState = toState
+        return schedule(taskName, handleExceptions, object : Callable<Task<T>> {
+            override fun call(): Task<T> {
+                if (getCurrentState() != fromState) {
+                    LOG.w(taskName, "- State mismatch, aborting. current: $currentState, from: $fromState, to: $toState")
+                    return Tasks.forCanceled()
                 }
-                task
+
+                return callable.call().continueWithTask(callback.getJobWorker(taskName).getExecutor(), Continuation<T, Task<T>> { task ->
+                        if (task.isSuccessful || isReversing) {
+                            currentState = toState
+                        }
+                        task
+                    })
             }
-        }).addOnCompleteListener { task ->
+        }).addOnCompleteListener {
             if (changeCount == stateChangeCount) {
                 targetState = currentState
             }
