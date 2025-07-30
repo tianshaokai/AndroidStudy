@@ -81,9 +81,7 @@ abstract class CameraOrchestrator(protected val callback: Callback) {
         val delayedRunnable = Runnable {
             schedule(name, true, runnable)
             synchronized(lock) {
-                if (delayedJobs.containsValue(this)) {
-                    delayedJobs.remove(name)
-                }
+                delayedJobs.remove(name)
             }
         }
         synchronized(lock) {
